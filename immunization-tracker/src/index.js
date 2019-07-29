@@ -6,8 +6,8 @@ import thunk from "redux-thunk";
 import rootReducer from "./store/reducers";
 
 // styling
-import "./styles/normalize.css";
-import "./styles/index.css";
+import "./styles/normalize.scss";
+import "./styles/index.scss";
 
 // custom components
 import App from "./components/App";
