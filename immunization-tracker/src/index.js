@@ -5,7 +5,7 @@ import ReactDOM from "react-dom";
 import "./styles/normalize.scss";
 import "./styles/index.scss";
 
-// custom components
+// components
 import App from "./components/App";
 
 ReactDOM.render(<App />, document.getElementById("root"));
