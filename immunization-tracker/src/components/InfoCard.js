@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import axios from "axios";
+const UserCard = ({ person }) => {
+  const [parents, setParents] = useState([]);
 
-const UserCard = ({ people }) => {
   const CardContainer = styled.div`
     display: flex;
     justify-content: center;
@@ -45,25 +47,23 @@ const UserCard = ({ people }) => {
   return (
     <>
       <CardContainer>
-        {people.map(person => {
-          return (
-            <>
-              <Card>
-                <div>
-                  <Photo />
-                </div>
-                <div style={{ width: "100%" }}>
-                  <Name>{person.name}</Name>
-                  <p>{person.currentProvider}</p>
-                  <div>
-                    <Button>View</Button>
-                    <Button>Update</Button>
-                  </div>
-                </div>
-              </Card>
-            </>
-          );
-        })}
+        <>
+          <Card>
+            <div>
+              <Photo />
+            </div>
+            <div style={{ width: "100%" }}>
+              <Name>
+                {person.firstName} {person.lastName}
+              </Name>
+              <p>{person.currentProvider}</p>
+              <div>
+                <Button>View</Button>
+                <Button>Update</Button>
+              </div>
+            </div>
+          </Card>
+        </>
       </CardContainer>
     </>
   );
