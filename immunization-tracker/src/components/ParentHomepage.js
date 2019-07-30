@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import InfoCard from "./InfoCard";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const ParentHomepage = props => {
   const [parent, setParent] = useState([]);
@@ -54,7 +55,9 @@ const ParentHomepage = props => {
       <p>{parentObj.phone}</p>
       <p>{parentObj.email}</p>
       <div>
-        <button>Edit Profile</button>
+        <Link to={`/edit/${id}`}>
+          <button>Edit Profile</button>
+        </Link>
       </div>
       {children.map(child => (
         <InfoCard person={child} />

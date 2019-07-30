@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import InfoCard from "./InfoCard";
 
-import Header from "./Header/Header"
-import {Route} from "react-router-dom";
-import {Switch} from "react-router-dom";
-import ShotsTable from "./PatientRecordPage/ShotsTable";
+import Header from "./Header/Header";
+import ParentHomepage from "./ParentHomepage";
+import ParentEdit from "./ParentEdit";
+import { Route } from "react-router-dom";
+import { Switch } from "react-router-dom";
+
+
 
 // styles
 import "../styles/App.scss";
@@ -36,7 +39,6 @@ export default function App() {
     // { name: "Van Jordan", currentProvider: "Current Provider Here" }
   ]);
 
-
   let NavName = [
     {name: "Home", link: "/"},
     {name: "Account", link: "/userForm"},
@@ -46,23 +48,23 @@ export default function App() {
   return (
     <div className="App">
 
-      <ShotsTable/>
-      <Switch> 
-        <Route path="/login" render={()=>(<h1>This Page Will Be the Login</h1>)}/>
-        <Route path="/"
-          render={()=>(
+    <ShotsTable/>
+      <Switch>
+        <Route path="/login" component={LogInUser} />
+        <Route path="/" render={() => (
 
             <div>
               <Header array={NavName} />
               <div>
-                <Route
-                  exact
-                  path="/"
-                  render={() => (
-                    <InfoCard people={people} setPeople={setPeople} />
-                  )}
-                />
                 <Route path="/userForm" component={CreateUserForm} />
+                <Route
+                  path="/userhome"
+                  render={props => <ParentHomepage {...props} />}
+                />
+                <Route
+                  path="/edit/:id"
+                  render={props => <ParentEdit {...props} />}
+                />
               </div>
             </div>
 
