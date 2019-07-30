@@ -8,6 +8,8 @@ import "../styles/App.scss";
 
 // components
 import CreateUserForm from "./CreateUserForm";
+import LogInUser from "./LoginUser";
+import Axios from "axios";
 
 export default function App() {
   const [people, setPeople] = useState([
@@ -30,6 +32,8 @@ export default function App() {
     // { name: "Van Jordan", currentProvider: "Current Provider Here" }
   ]);
 
+  
+
   let NavName = [
     { name: "Home", link: "/" },
     { name: "Account", link: "/userForm" },
@@ -38,11 +42,9 @@ export default function App() {
   ];
   return (
     <div className="App">
+
       <Switch>
-        <Route
-          path="/login"
-          render={() => <h1>This Page Will Be the Login</h1>}
-        />
+        <Route path="/login" component={LogInUser} />
         <Route
           path="/"
           render={() => (
