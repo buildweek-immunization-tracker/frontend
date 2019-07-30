@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import InfoCard from "./InfoCard";
+import Header from "./Header/Header"
+import {Route} from "react-router-dom";
+import {Switch} from "react-router-dom";
 // styles
 import "../styles/App.scss";
 
@@ -15,10 +18,30 @@ export default function App() {
     { name: "Trang Nguyen", currentProvider: "Current Provider Here" },
     { name: "Van Jordan", currentProvider: "Current Provider Here" }
   ]);
+
+  let NavName = [
+    {name: "Home", link: "/"},
+    {name: "Account", link: "/userForm"},
+    {name: "PDF", link: "/pdf"},
+    {name: "Log Out", link: "/login"}
+
+  ]
   return (
     <div className="App">
-      <InfoCard people={people} />
-      <CreateUserForm />
+      <Switch> 
+        <Route path="/login" render={()=>(<h1>This Page Will Be the Login</h1>)}/>
+        <Route path="/"
+          render={()=>(
+            <div>
+              <Header array={NavName}/>
+              <div>
+                <Route exact path="/" render={()=>(<InfoCard people={people}/>)}/>
+                <Route path="/userForm" component={CreateUserForm}/>
+              </div>
+            </div>
+          )}/>
+
+      </Switch>
 
     </div>
   );
