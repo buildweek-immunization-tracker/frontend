@@ -3,12 +3,13 @@ import InfoCard from "./InfoCard";
 import Header from "./Header/Header"
 import {Route} from "react-router-dom";
 import {Switch} from "react-router-dom";
+import ShotsTable from "./PatientRecordPage/ShotsTable";
 // styles
 import "../styles/App.scss";
 
 // components
 import CreateUserForm from "./CreateUserForm";
-import LoginInForm from "./LoginUser";
+
 
 export default function App() {
 
@@ -25,10 +26,11 @@ export default function App() {
     {name: "Account", link: "/userForm"},
     {name: "PDF", link: "/pdf"},
     {name: "Log Out", link: "/login"}
-
   ]
   return (
     <div className="App">
+
+      <ShotsTable/>
       <Switch> 
         <Route path="/login" render={()=>(<h1>This Page Will Be the Login</h1>)}/>
         <Route path="/"
@@ -41,7 +43,9 @@ export default function App() {
               </div>
             </div>
           )}/>
+
       </Switch>
+
     </div>
   );
 }
