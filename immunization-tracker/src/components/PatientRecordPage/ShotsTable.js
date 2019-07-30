@@ -8,13 +8,23 @@ import ShotsRowMissed from "./ShotsRowMissed";
 
 export default function ShotsTable({id}){
 
-    const [shotsArr, setShotsArr] = useState([])
+    const [shotsRAUArr, setShotsRAUArr] = useState([])
+    const [shotsMissedArr, setShotsMissedArr] = useState([])
 
     useEffect(()=>{
         Axios.get(`https://immunization-tracker-van.herokuapp.com/api/immunizations/taken/1`)
             .then(data =>{
                 console.log(data.data);
-                setShotsArr(data.data)
+                setShotsRAUArr(data.data)
+            })
+            .catch(error=>console.log(error))
+    },[])
+
+    useEffect(()=>{
+        Axios.get(`https://immunization-tracker-van.herokuapp.com/api/immunizations/taken/1`)
+            .then(data =>{
+                console.log(data.data);
+                setShotsMissedArr(data.data)
             })
             .catch(error=>console.log(error))
     },[])
@@ -39,19 +49,21 @@ export default function ShotsTable({id}){
             
                 <Table.Body>
 
-                    {shotsArr.map((shot)=>
+                    {shotsRAUArr.map((shot)=>
                         <ShotsRow 
                         name={shot.description} 
                         dose={shot.dose}
                         location={shot.location}
                         dateReceived={shot.dateReceived}
                     />)}
-                    <ShotsRowMissed 
-                        name={'HEP B'} 
-                        dose={'1'}
-                        location={"hospital"}
-                        dateReceived={null}
-                    />
+
+                    {shotsMissedArr.map((shot)=>
+                        <ShotsRowMissed 
+                        name={shot.description} 
+                        dose={shot.dose}
+                        location={shot.location}
+                        dateReceived={shot.dateReceived}
+                    />)}
                 </Table.Body>
             </Table>
         </NavContainer>
