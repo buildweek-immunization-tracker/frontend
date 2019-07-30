@@ -1,23 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-function LogInForm ({props}){
-
+function LogInUser ({props}){
+    //hold state of form, and return to empty form once submit button is clicked
     const [user, setUser] = useState({username:"", password:""});
 
     //change handler will change the input element's values
     const handleChange = event => {
-        const updatedUser = { ...user, [event.target.name]: event.target.value };
-        setUser(updatedUser);   
+        const loggedInUser = { ...user, [event.target.name]: event.target.value };
+        setUser(loggedInUser);   
     }
 
     //submit handler will control the form's submission
     const handleSubmit = event => {
         event.preventDefault();
-        console.log("user", user);
+        console.log("logged-in user", user);
     }
 
     return (
         <form onSubmit={handleSubmit}>
+          <h2>Login</h2>  
           <label>
               Username
               <input type="text" name="username" placeholder="Your username" value="props" onChange={handleChange} required /> 
@@ -32,4 +33,4 @@ function LogInForm ({props}){
 
 }
 
-export default LogInForm
+export default LogInUser;
