@@ -34,10 +34,10 @@ function CreateUserForm({ touched, errors }) {
         <button type="submit">Submit</button>
       </Form>
       <div className="error-group">
+        <div className="error-message">{touched.email && errors.email}</div>
         <div className="error-message">
           {touched.username && errors.username}
         </div>
-        <div className="error-message">{touched.email && errors.email}</div>
         <div className="error-message">
           {touched.password && errors.password}
         </div>
@@ -61,7 +61,7 @@ export default withFormik({
       .required("Please enter a username.")
       .min(2, "Please enter a username."),
     email: Yup.string()
-      .required("Please enter an age.")
+      .required("Please enter an email.")
       .email("Email is not valid."),
     password: Yup.string()
       .required("Please enter a password.")
