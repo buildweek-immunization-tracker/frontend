@@ -4,6 +4,18 @@ import axios from "axios";
 const UserCard = ({ people, setPeople }) => {
   const [parents, setParents] = useState([]);
 
+  useEffect(() => {
+    axios
+      .get("https://immunization-tracker-van.herokuapp.com/api/parents/1")
+      .then(response => {
+        const data = response.data;
+        setParents(data);
+        console.log("parent data", data);
+        return data;
+      })
+      .then(setPeople([...people, ...parents]));
+  }, [parents.length]);
+
   const CardContainer = styled.div`
     display: flex;
     justify-content: center;
