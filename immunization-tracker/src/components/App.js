@@ -33,7 +33,7 @@ export default function App() {
   return (
     <div className="App">
       <Switch> 
-        <Route path="/login" render={()=>(<LogInUser />)}/>
+        <Route path="/login" component={LogInUser} />
         <Route path="/"
           render={()=>(
             <div>
