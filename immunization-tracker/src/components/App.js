@@ -21,14 +21,7 @@ export default function App() {
     { name: "Van Jordan", currentProvider: "Current Provider Here" }
   ]);
 
-  const [loggedInUser, setloggedInUser] = useState([]);
-
-  const loginPerson = person => {
-    Axios.post('https://immunization-tracker-van.herokuapp.com/api/auth/login/', person)
-      .then(res => {
-        setloggedInUser(res.userId);
-      });
-  };
+  
 
   let NavName = [
     {name: "Home", link: "/"},
@@ -40,7 +33,7 @@ export default function App() {
   return (
     <div className="App">
       <Switch> 
-        <Route path="/login" render={()=>(<LogInUser user={loggedInUser} loginUser={setloggedInUser} />)}/>
+        <Route path="/login" render={()=>(<LogInUser />)}/>
         <Route path="/"
           render={()=>(
             <div>

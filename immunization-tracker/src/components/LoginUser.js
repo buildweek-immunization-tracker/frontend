@@ -1,20 +1,44 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import Axios from "axios";
 
-function LogInUser({ props }) {
-    //hold state of form, and return to empty form once submit button is clicked
-    const [user, setUser] = useState({ username: "", password: "" });
+function LogInUser() {
+//     //hold state of form, and return to empty form once submit button is clicked
+//     const [loginUser, setLoginUser] = useState({ username: "", password: "" });
 
-    //change handler will change the input element's values
+//     //change handler will change the input element's values
+//     const handleChange = event => {
+//         const loggedInUser = { ...user, [event.target.name]: event.target.value };
+//         setUser(loggedInUser);
+//     }
+
+//     //submit handler will control the form's submission
+//     const handleSubmit = event => {
+//         event.preventDefault();
+//         console.log("logged-in user", user);
+//     }
+
+//   const loginPerson = person => {
+//     Axios.post('https://immunization-tracker-van.herokuapp.com/api/auth/login/', person)
+//       .then(res => {
+//         setloggedInUser(res.data);
+//       });
+//   };
+
+
+    const [user, setUser] = useState({})
+
     const handleChange = event => {
-        const loggedInUser = { ...user, [event.target.name]: event.target.value };
-        setUser(loggedInUser);
-    }
+        const inputUser = { ...user, [event.target.name]: event.target.value };
+        setUser(inputUser);
 
-    //submit handler will control the form's submission
+    };
+
     const handleSubmit = event => {
         event.preventDefault();
-        console.log("logged-in user", user);
-    }
+        Axios.post('https://immunization-tracker-van.herokuapp.com/api/auth/login/', user)
+        .then(res => console.log(res));
+        
+    };
 
     return (
         <div>
