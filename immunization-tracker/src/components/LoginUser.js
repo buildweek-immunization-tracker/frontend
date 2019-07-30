@@ -22,15 +22,21 @@ function LogInUser(props) {
             localStorage.setItem("token", JSON.stringify(res.data.token));
             localStorage.setItem("role", JSON.stringify(res.data.role));
             localStorage.setItem("user ID", JSON.stringify(res.data.userId));
-            props.history.push('/')
+            props.history.push('/');
 
         })
         .catch(error => console.log(error, "There was an error fetching the data."))
         
     };
 
+    const toSignUp = event => {
+        event.preventDefault();
+        console.log(props);
+        props.history.push('/userForm');
+    }
+
     return (
-        <div>
+        <div className="log-in">
             <form onSubmit={handleSubmit}>
                 <h2>Login</h2>
                 <label>
@@ -41,8 +47,9 @@ function LogInUser(props) {
                     Password
               <input type="password" name="password" placeholder="Your password" value={user.password} onChange={handleChange} required />
                 </label>
-                <button type="submit">Log In</button>
+                <button type="submit" >Log In</button>
             </form>
+            <button onClick={toSignUp}>Sign Up</button>
         </div>
 
     );
