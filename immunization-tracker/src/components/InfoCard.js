@@ -1,20 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-const UserCard = ({ people, setPeople }) => {
+const UserCard = ({ person }) => {
   const [parents, setParents] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get("https://immunization-tracker-van.herokuapp.com/api/parents/1")
-      .then(response => {
-        const data = response.data;
-        setParents(data);
-        console.log("parent data", data);
-        return data;
-      })
-      .then(setPeople([...people, ...parents]));
-  }, [parents.length]);
 
   const CardContainer = styled.div`
     display: flex;
@@ -56,33 +44,26 @@ const UserCard = ({ people, setPeople }) => {
     font-size: 0.8rem;
   `;
 
-  console.log("people", people);
-  console.log("test", parents);
-
   return (
     <>
       <CardContainer>
-        {people.map(person => {
-          return (
-            <>
-              <Card>
-                <div>
-                  <Photo />
-                </div>
-                <div style={{ width: "100%" }}>
-                  <Name>
-                    {person.firstName} {person.lastName}
-                  </Name>
-                  <p>{person.currentProvider}</p>
-                  <div>
-                    <Button>View</Button>
-                    <Button>Update</Button>
-                  </div>
-                </div>
-              </Card>
-            </>
-          );
-        })}
+        <>
+          <Card>
+            <div>
+              <Photo />
+            </div>
+            <div style={{ width: "100%" }}>
+              <Name>
+                {person.firstName} {person.lastName}
+              </Name>
+              <p>{person.currentProvider}</p>
+              <div>
+                <Button>View</Button>
+                <Button>Update</Button>
+              </div>
+            </div>
+          </Card>
+        </>
       </CardContainer>
     </>
   );
