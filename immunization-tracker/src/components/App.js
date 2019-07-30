@@ -10,6 +10,8 @@ import "../styles/App.scss";
 
 // components
 import CreateUserForm from "./CreateUserForm";
+import LogInUser from "./LoginUser";
+import Axios from "axios";
 
 export default function App() {
   const [people, setPeople] = useState([
@@ -40,8 +42,28 @@ export default function App() {
   ];
   return (
     <div className="App">
-      <Route exact path="/" render={props => <ParentHomepage {...props} />} />
-      <Route path="/edit/:id" render={props => <ParentEdit {...props} />} />
+      <Switch>
+        <Route path="/login" component={LogInUser} />
+        <Route
+          path="/"
+          render={() => (
+            <div>
+              <Header array={NavName} />
+              <div>
+                <Route path="/userForm" component={CreateUserForm} />
+                <Route
+                  path="/userhome"
+                  render={props => <ParentHomepage {...props} />}
+                />
+                <Route
+                  path="/edit/:id"
+                  render={props => <ParentEdit {...props} />}
+                />
+              </div>
+            </div>
+          )}
+        />
+      </Switch>
     </div>
   );
 }
