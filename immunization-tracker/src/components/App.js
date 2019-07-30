@@ -7,19 +7,29 @@ import "../styles/App.scss";
 import CreateUserForm from "./CreateUserForm";
 
 export default function App() {
-
   const [people, setPeople] = useState([
-    { name: "Elvis Knapman", currentProvider: "Current Provider Here" },
-    { name: "Dave Irwin", currentProvider: "Current Provider Here" },
-    { name: "Tatiana Faramarzi", currentProvider: "Current Provider Here" },
-    { name: "Trang Nguyen", currentProvider: "Current Provider Here" },
-    { name: "Van Jordan", currentProvider: "Current Provider Here" }
+    {
+      firstName: "Elvis",
+      lastName: "Knapman",
+      currentProvider: "Current Provider Here"
+    },
+    {
+      firstName: "Dave",
+      lastName: "Irwin",
+      currentProvider: "Current Provider Here"
+    },
+    {
+      firstName: "Tatiana",
+      lastName: "Faramarzi",
+      currentProvider: "Current Provider Here"
+    }
+    // { name: "Trang Nguyen", currentProvider: "Current Provider Here" },
+    // { name: "Van Jordan", currentProvider: "Current Provider Here" }
   ]);
   return (
     <div className="App">
-      <InfoCard people={people} />
+      <InfoCard people={people} setPeople={setPeople} />
       <CreateUserForm />
-
     </div>
   );
 }
