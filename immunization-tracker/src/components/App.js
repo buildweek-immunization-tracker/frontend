@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import InfoCard from "./InfoCard";
 import Header from "./Header/Header";
+import ParentHomepage from "./ParentHomepage";
+import ParentEdit from "./ParentEdit";
 import { Route } from "react-router-dom";
 import { Switch } from "react-router-dom";
 // styles
@@ -38,30 +40,8 @@ export default function App() {
   ];
   return (
     <div className="App">
-      <Switch>
-        <Route
-          path="/login"
-          render={() => <h1>This Page Will Be the Login</h1>}
-        />
-        <Route
-          path="/"
-          render={() => (
-            <div>
-              <Header array={NavName} />
-              <div>
-                <Route
-                  exact
-                  path="/"
-                  render={() => (
-                    <InfoCard people={people} setPeople={setPeople} />
-                  )}
-                />
-                <Route path="/userForm" component={CreateUserForm} />
-              </div>
-            </div>
-          )}
-        />
-      </Switch>
+      <Route exact path="/" render={props => <ParentHomepage {...props} />} />
+      <Route path="/edit/:id" render={props => <ParentEdit {...props} />} />
     </div>
   );
 }
