@@ -52,7 +52,9 @@ export default function App() {
                 <Route
                   exact
                   path="/"
-                  render={() => <InfoCard people={people} />}
+                  render={() => (
+                    <InfoCard people={people} setPeople={setPeople} />
+                  )}
                 />
                 <Route path="/userForm" component={CreateUserForm} />
               </div>
