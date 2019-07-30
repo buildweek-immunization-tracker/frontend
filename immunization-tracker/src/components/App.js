@@ -3,7 +3,11 @@ import InfoCard from "./InfoCard";
 // styles
 import "../styles/App.scss";
 
+// components
+import CreateUserForm from "./CreateUserForm";
+
 export default function App() {
+
   const [people, setPeople] = useState([
     { name: "Elvis Knapman", currentProvider: "Current Provider Here" },
     { name: "Dave Irwin", currentProvider: "Current Provider Here" },
@@ -14,6 +18,8 @@ export default function App() {
   return (
     <div className="App">
       <InfoCard people={people} />
+      <CreateUserForm />
+
     </div>
   );
 }
