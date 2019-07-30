@@ -12,6 +12,8 @@ export default function Header({array}){
         width: 75%;
         background: tomato;
         margin: auto;
+        margin-top: 2%;
+        border-radius: 10px;
     `;
 
     const name = "Trang";
