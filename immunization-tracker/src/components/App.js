@@ -17,7 +17,9 @@ export default function App() {
   ]);
   return (
     <div className="App">
+
       <InfoCard people={people} />
+
       <CreateUserForm />
 
     </div>
