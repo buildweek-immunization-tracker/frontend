@@ -11,7 +11,7 @@ export default function ShotsTable({id}){
     const [shotsArr, setShotsArr] = useState([])
 
     useEffect(()=>{
-        Axios.get(`https://immunization-tracker-van.herokuapp.com/api/immunizations/child/${id}`)
+        Axios.get(`https://immunization-tracker-van.herokuapp.com/api/immunizations/taken/1`)
             .then(data =>{
                 console.log(data.data);
                 setShotsArr(data.data)
@@ -38,12 +38,14 @@ export default function ShotsTable({id}){
                 </Table.Header>
             
                 <Table.Body>
-                    <ShotsRow 
-                        name={'HEP B'} 
-                        dose={'1'}
-                        location={"hospital"}
-                        dateReceived={null}
-                    />
+
+                    {shotsArr.map((shot)=>
+                        <ShotsRow 
+                        name={shot.description} 
+                        dose={shot.dose}
+                        location={shot.location}
+                        dateReceived={shot.dateReceived}
+                    />)}
                     <ShotsRowMissed 
                         name={'HEP B'} 
                         dose={'1'}
