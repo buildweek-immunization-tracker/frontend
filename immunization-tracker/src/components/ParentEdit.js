@@ -36,7 +36,7 @@ const ParentEdit = props => {
 
   const sendUpdateRequest = event => {
     event.preventDefault();
-    // we will send API request for user object to be updated
+    // we will send API request for user object to be updated using 'newData' object
   };
 
   if (!person) {
