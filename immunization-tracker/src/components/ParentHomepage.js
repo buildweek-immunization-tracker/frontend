@@ -56,6 +56,9 @@ const ParentHomepage = props => {
       <div>
         <button>Edit Profile</button>
       </div>
+      {children.map(child => (
+        <InfoCard person={child} />
+      ))}
     </div>
   );
 };
