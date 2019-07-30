@@ -9,6 +9,7 @@ import "../styles/App.scss";
 // components
 import CreateUserForm from "./CreateUserForm";
 import LogInUser from "./LoginUser";
+import Axios from "axios";
 
 export default function App() {
 
@@ -20,7 +21,14 @@ export default function App() {
     { name: "Van Jordan", currentProvider: "Current Provider Here" }
   ]);
 
-  const [user, setUser] = useState([]);
+  const [loggedInUser, setloggedInUser] = useState([]);
+
+  const loginPerson = person => {
+    Axios.post('https://immunization-tracker-van.herokuapp.com/api/auth/login/', person)
+      .then(res => {
+        setloggedInUser(res.userId);
+      });
+  };
 
   let NavName = [
     {name: "Home", link: "/"},
@@ -32,7 +40,7 @@ export default function App() {
   return (
     <div className="App">
       <Switch> 
-        <Route path="/login" render={()=>(<LogInUser user={user} loginUser={setUser} />)}/>
+        <Route path="/login" render={()=>(<LogInUser user={loggedInUser} loginUser={setloggedInUser} />)}/>
         <Route path="/"
           render={()=>(
             <div>
