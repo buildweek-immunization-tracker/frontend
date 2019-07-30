@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 export default function NavObj({name, link}){
@@ -17,12 +17,20 @@ export default function NavObj({name, link}){
     const NavText =styled.h2`
           color: white;
           margin: 5px;
+          font-size: 1.3 rem;
     `;
+
+    const StyledLink = styled(Link)`
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
+    `;
+
 
     return( <div>
 
         <NavObjCont>
-            <NavText><NavLink to={link}>{name}</NavLink></NavText>
+            <NavText><StyledLink to={link}>{name}</StyledLink></NavText>
         </NavObjCont>
     </div>
     )
