@@ -4,6 +4,7 @@ import Axios from "axios";
 import { Icon, Label, Menu, Table } from 'semantic-ui-react'
 import ShotsRow from "./ShotsRowReceivedAndUpcoming"
 import styled from "styled-components";
+import ShotsRowMissed from "./ShotsRowMissed";
 
 export default function ShotsTable({id}){
 
@@ -38,10 +39,16 @@ export default function ShotsTable({id}){
             
                 <Table.Body>
                     <ShotsRow 
-                        name={'dose'} 
-                        dose={'dose'}
-                        location={"jesus"}
-                        dateReceived={"hi"}
+                        name={'HEP B'} 
+                        dose={'1'}
+                        location={"hospital"}
+                        dateReceived={null}
+                    />
+                    <ShotsRowMissed 
+                        name={'HEP B'} 
+                        dose={'1'}
+                        location={"hospital"}
+                        dateReceived={null}
                     />
                 </Table.Body>
             </Table>
