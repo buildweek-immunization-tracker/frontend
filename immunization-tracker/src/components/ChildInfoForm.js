@@ -7,11 +7,17 @@ function ChildInfoForm(props) {
     //if a child ID is passed in, this is an update. Otherwise, this is a new child object.
     const id = props.match.params.id;
     const isUpdate = (id !== null);
-    
-    //state for new child object
-    const [child, setChild] = useState({})
 
-    //state for existing child object
+    useEffect(() => {
+        Axios
+          .get(`https://immunization-tracker-van.herokuapp.com/api/children/${id}`)
+          .then(res => {
+            updateExistingChild(...res.data);
+          });
+      }, []);
+    
+    
+    const [child, setChild] = useState({})
     const [existingChild, updateExistingChild] = useState(null)
 
     //change handler for new child object

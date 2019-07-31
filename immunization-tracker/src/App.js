@@ -8,7 +8,6 @@ import ParentHomepage from "./components/ParentHomepage";
 import ProviderHomepage from "./components/ProviderHomepage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import NavBar from "./components/NavBar";
-import ChildInfoForm from "./components/ChildInfoForm";
 
 // styles
 import "./styles/App.scss";
