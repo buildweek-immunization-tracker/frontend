@@ -7,7 +7,7 @@ const ParentHomepage = props => {
   const [parent, setParent] = useState([]);
   const [children, setChildren] = useState([]);
   const id = 1;
-  // const id = props.match.params.id;
+  // const id = JSON.parse(localStorage.getItem("user ID"))
 
   useEffect(() => {
     axios

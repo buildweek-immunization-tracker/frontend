@@ -12,13 +12,11 @@ import ProtecteRoute from "./ProtectedRoute";
 import "../styles/App.scss";
 
 export default function App() {
-  const userId = JSON.parse(localStorage.getItem("user ID"));
-  // console.log("user id is: ", userId);
   return (
     <>
       <Route path="/createuser" component={CreateUserForm} />
-      <ProtecteRoute path="/parent/:id" component={ParentHomepage} />
-      <ProtecteRoute path="/provider/:id" component={ProviderHomepage} />
+      <ProtecteRoute path="/parent/" component={ParentHomepage} />
+      <ProtecteRoute path="/provider/" component={ProviderHomepage} />
       <Route
         exact
         path="/"
@@ -26,9 +24,9 @@ export default function App() {
           if (!localStorage.getItem("token")) {
             return <Route path="/" component={LoginUser} />;
           } else if (JSON.parse(localStorage.getItem("role")) === "parent") {
-            return <Redirect to={`/parent/${userId}`} />;
+            return <Redirect to="/parent/" />;
           } else if (JSON.parse(localStorage.getItem("role")) === "staff") {
-            return <Redirect to={`/provider/${userId}`} />;
+            return <Redirect to="/provider" />;
           }
         }}
       />

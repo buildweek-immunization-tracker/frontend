@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import styled from "styled-components";
 
 function LogInUser(props) {
   console.log(props);
@@ -38,9 +39,8 @@ function LogInUser(props) {
   };
 
   return (
-    <div className="log-in">
+    <LoginWrapper>
       <form onSubmit={handleSubmit}>
-        <h2>Login</h2>
         <label>
           Username
           <input
@@ -63,11 +63,43 @@ function LogInUser(props) {
             required
           />
         </label>
-        <button type="submit">Log In</button>
+        <button className="login-Btn" type="submit">
+          Log In
+        </button>
       </form>
+      <div>or</div>
       <button onClick={toSignUp}>Sign Up</button>
-    </div>
+    </LoginWrapper>
   );
 }
 
 export default LogInUser;
+
+const LoginWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  div {
+    margin-bottom: 2rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    label {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+      input {
+        padding: 0.5rem;
+      }
+    }
+  }
+  button {
+    padding: 0.5rem;
+  }
+`;

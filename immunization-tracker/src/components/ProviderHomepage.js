@@ -1,8 +1,9 @@
 import React from "react";
 
-const ParentHomepage = props => {
-  console.log(props);
-  return <div>Provider Home Page for {props.match.params.id}</div>;
+const ParentHomepage = () => {
+  const userId = JSON.parse(localStorage.getItem("user ID"));
+
+  return <div>Provider Home Page for {userId}</div>;
 };
 
 export default ParentHomepage;

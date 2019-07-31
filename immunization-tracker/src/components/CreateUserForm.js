@@ -2,6 +2,7 @@ import React from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import styled from "styled-components";
 
 function CreateUserForm(props) {
   console.log("Props: ", props);
@@ -9,45 +10,54 @@ function CreateUserForm(props) {
   const { touched, errors } = props;
 
   return (
-    <section>
+    <AddUserWrapper>
       <Form>
-        <Field
-          name="email"
-          type="email"
-          placeholder="Email"
-          autoComplete="off"
-        />
-        <Field
-          name="username"
-          type="username"
-          placeholder="Username"
-          autoComplete="off"
-        />
-        <Field
-          name="password"
-          type="password"
-          placeholder="Password"
-          autoComplete="off"
-        />
-        <Field component="select" name="role">
-          <option value="" label="User Type" />
-          <option value="parent">Parent</option>
-          <option value="staff">Healthcare Provider</option>
-        </Field>
-
+        <label>
+          Username
+          <Field
+            name="username"
+            type="username"
+            placeholder="Username"
+            autoComplete="off"
+          />
+          <div className="error-message">
+            {touched.username && errors.username}
+          </div>
+        </label>
+        <label>
+          Email
+          <Field
+            name="email"
+            type="email"
+            placeholder="Email"
+            autoComplete="off"
+          />
+          <div className="error-message">{touched.email && errors.email}</div>
+        </label>
+        <label>
+          Password
+          <Field
+            name="password"
+            type="password"
+            placeholder="Password"
+            autoComplete="off"
+          />
+          <div className="error-message">
+            {touched.password && errors.password}
+          </div>
+        </label>
+        <label>
+          User Type
+          <Field component="select" name="role">
+            <option value="" label="" />
+            <option value="parent">Parent</option>
+            <option value="staff">Healthcare Provider</option>
+          </Field>
+          <div className="error-message">{touched.role && errors.role}</div>
+        </label>
         <button type="submit">Submit</button>
       </Form>
-      <div className="error-group">
-        <div className="error-message">{touched.email && errors.email}</div>
-        <div className="error-message">
-          {touched.username && errors.username}
-        </div>
-        <div className="error-message">
-          {touched.password && errors.password}
-        </div>
-        <div className="error-message">{touched.role && errors.role}</div>
-      </div>
-    </section>
+    </AddUserWrapper>
   );
 }
 export default withFormik({
@@ -76,7 +86,7 @@ export default withFormik({
   }),
 
   handleSubmit(values, formikBag) {
-    formikBag.resetForm();
+    // formikBag.resetForm();
     axios
       .post(
         "https://immunization-tracker-van.herokuapp.com/api/auth/register",
@@ -91,3 +101,35 @@ export default withFormik({
       });
   }
 })(CreateUserForm);
+
+const AddUserWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  div {
+    margin-bottom: 2rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    label {
+      display: flex;
+      flex-direction: column;
+      input {
+        padding: 0.5rem;
+      }
+    }
+  }
+  button {
+    padding: 0.5rem;
+  }
+
+  select {
+    padding: 0.25rem;
+  }
+`;
