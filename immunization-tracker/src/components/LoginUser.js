@@ -5,7 +5,7 @@ import styled from "styled-components";
 import NavBar from "./NavBar";
 
 function LogInUser(props) {
-  console.log(props);
+ // console.log(props);
 
   const [user, setUser] = useState({});
 
