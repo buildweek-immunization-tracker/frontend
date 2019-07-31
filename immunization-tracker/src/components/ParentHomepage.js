@@ -3,6 +3,7 @@ import InfoCard from "./InfoCard";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import NavBar from "./NavBar";
+import ShotsTableP from "./ProviderRecordPage/ShotsTableP"
 
 const ParentHomepage = props => {
   const [parent, setParent] = useState([]);
@@ -44,6 +45,8 @@ const ParentHomepage = props => {
 
   return (
     <div>
+      <ShotsTableP id="1"/>
+      
       <h1>
         {parentObj.firstName} {parentObj.lastName}
       </h1>
