@@ -17,6 +17,7 @@ const ParentEdit = props => {
   };
   const [person, setPerson] = useState(null);
   const [newData, setNewData] = useState(initialState);
+  const [statusMessage, setStatusMessage] = useState("");
   // array of US states
   const [statesArray, setStatesArray] = useState([
     "AK",
@@ -94,7 +95,12 @@ const ParentEdit = props => {
 
   const sendUpdateRequest = event => {
     event.preventDefault();
+
     // we will send API request for user object to be updated using 'newData' object
+    setStatusMessage("Profile successfully updated");
+    setStatusMessage(
+      "Something went wrong, please check your input and try again."
+    );
   };
 
   if (!person) {
@@ -104,6 +110,7 @@ const ParentEdit = props => {
   console.log("newData in person edit", newData);
   return (
     <div>
+      <div>{statusMessage ? <p>{statusMessage}</p> : <p>&nbsp;</p>}</div>
       <h1>Editing {person.firstName}'s Profile</h1>
       <form onSubmit={sendUpdateRequest}>
         <div>
@@ -220,6 +227,9 @@ const ParentEdit = props => {
               onChange={onDataChange}
             />
           </label>
+        </div>
+        <div>
+          <button>Update Profile</button>
         </div>
       </form>
     </div>
