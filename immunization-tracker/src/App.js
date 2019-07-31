@@ -11,6 +11,7 @@ import NavBar from "./components/NavBar";
 
 // styles
 import "./styles/App.scss";
+import ParentEdit from "./components/ParentEdit";
 
 export default function App() {
   return (
@@ -19,6 +20,10 @@ export default function App() {
       <Route path="/createuser" component={CreateUserForm} />
       <ProtectedRoute path="/parent/" component={ParentHomepage} />
       <ProtectedRoute path="/provider/" component={ProviderHomepage} />
+      <Route
+        path="/user/edit/:id"
+        render={props => <ParentEdit {...props} />}
+      />
       <Route
         exact
         path="/"
