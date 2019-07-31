@@ -11,17 +11,17 @@ const ParentHomepage = props => {
   // const id = JSON.parse(localStorage.getItem("user ID"));
   console.log("the user id is", id);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       `https://immunization-tracker-van.herokuapp.com/api/parents/children/${id}`
-  //     )
-  //     .then(response => {
-  //       const data = response.data;
-  //       setChildren(data);
-  //       console.log("children data", data);
-  //     });
-  // }, [id]);
+  useEffect(() => {
+    axios
+      .get(
+        `https://immunization-tracker-van.herokuapp.com/api/parents/children/${id}`
+      )
+      .then(response => {
+        const data = response.data;
+        setChildren(data);
+        console.log("children data", data);
+      });
+  }, [id]);
 
   useEffect(() => {
     axios
