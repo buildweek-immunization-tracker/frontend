@@ -2,11 +2,7 @@ import React, { useState } from "react";
 import Axios from "axios";
 import styled from "styled-components";
 
-import NavBar from "./NavBar";
-
 function LogInUser(props) {
-  console.log(props);
-
   const [user, setUser] = useState({});
 
   //hold state of form, and return to empty form once submit button is clicked
@@ -37,7 +33,6 @@ function LogInUser(props) {
 
   const toSignUp = event => {
     event.preventDefault();
-    console.log(props);
     props.history.push("/createuser");
   };
 
