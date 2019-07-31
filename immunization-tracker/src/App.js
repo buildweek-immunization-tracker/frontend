@@ -25,7 +25,7 @@ export default function App() {
         exact
         path="/"
         render={() => {
-          if (!localStorage.getItem("token")) {
+          if (!localStorage.getItem("loggedIn")) {
             return <Route path="/" component={LoginUser} />;
           } else if (JSON.parse(localStorage.getItem("role")) === "parent") {
             return <Redirect to="/parent/" />;
