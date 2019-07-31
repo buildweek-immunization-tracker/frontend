@@ -63,6 +63,18 @@ function ChildInfoForm(props) {
         return <div>Loading...</div>
     }
 
+    const toDeleteChild = event => {
+        event.preventDefault();
+        Axios.delete(
+            `https://immunization-tracker-van.herokuapp.com/api/children/${id}`)
+        .then(res => {
+            props.history.push("/parent");
+        })
+        .catch(error => 
+            console.log(error)
+        );
+    };
+
     return (
         <div className="child-form">
             <form onSubmit={isUpdate ? handleExistingSubmit : handleNewSubmit}>
@@ -88,8 +100,9 @@ function ChildInfoForm(props) {
                     Medical Notes (Optional)
                     <input type="text" name="comments" value={child.comments} onChange={isUpdate ? handleEdit : handleChange} />
                 </label>
-                <button type="submit" >Create Child Profile</button>
+                <button type="submit">Set Child Profile</button>
             </form>
+            <button onClick={toDeleteChild} >Delete Child Profile</button>
         </div>
 
     );
