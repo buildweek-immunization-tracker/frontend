@@ -8,19 +8,20 @@ const ParentHomepage = props => {
   const [parent, setParent] = useState([]);
   const [children, setChildren] = useState([]);
   const id = 1;
-  // const id = JSON.parse(localStorage.getItem("user ID"))
+  // const id = JSON.parse(localStorage.getItem("user ID"));
+  console.log("the user id is", id);
 
-  useEffect(() => {
-    axios
-      .get(
-        `https://immunization-tracker-van.herokuapp.com/api/parents/children/${id}`
-      )
-      .then(response => {
-        const data = response.data;
-        setChildren(data);
-        console.log("children data", data);
-      });
-  }, [id]);
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       `https://immunization-tracker-van.herokuapp.com/api/parents/children/${id}`
+  //     )
+  //     .then(response => {
+  //       const data = response.data;
+  //       setChildren(data);
+  //       console.log("children data", data);
+  //     });
+  // }, [id]);
 
   useEffect(() => {
     axios
@@ -36,7 +37,7 @@ const ParentHomepage = props => {
   // console.log("last name", parent[0].lastName);
 
   if (parent.length === 0) {
-    return <p>Loading...</p>;
+    return <p>Loading profile...</p>;
   }
 
   const [parentObj] = [...parent];
@@ -57,13 +58,17 @@ const ParentHomepage = props => {
       <p>{parentObj.phone}</p>
       <p>{parentObj.email}</p>
       <div>
-        <Link to={`/edit/${id}`}>
+        <Link to={`/user/edit/${id}`}>
           <button>Edit Profile</button>
         </Link>
       </div>
-      {children.map(child => (
-        <InfoCard person={child} />
-      ))}
+      {children.length === 0 ? (
+        <p>
+          You have not added any children. Please add some to start tracking.
+        </p>
+      ) : (
+        children.map(child => <InfoCard key={child.id} person={child} />)
+      )}
     </div>
   );
 };
