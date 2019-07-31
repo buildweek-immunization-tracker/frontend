@@ -4,6 +4,8 @@ import * as Yup from "yup";
 import axios from "axios";
 import styled from "styled-components";
 
+import NavBar from "./NavBar";
+
 function CreateUserForm(props) {
   console.log("Props: ", props);
 
@@ -11,6 +13,7 @@ function CreateUserForm(props) {
 
   return (
     <AddUserWrapper>
+      <NavBar />
       <Form>
         <label>
           Username
@@ -55,7 +58,7 @@ function CreateUserForm(props) {
           </Field>
           <div className="error-message">{touched.role && errors.role}</div>
         </label>
-        <button type="submit">Submit</button>
+        <button type="submit">Create Account</button>
       </Form>
     </AddUserWrapper>
   );

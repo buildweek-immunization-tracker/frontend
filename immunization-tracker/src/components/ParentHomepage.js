@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import InfoCard from "./InfoCard";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import NavBar from "./NavBar";
 
 const ParentHomepage = props => {
   const [parent, setParent] = useState([]);
@@ -43,6 +44,7 @@ const ParentHomepage = props => {
 
   return (
     <div>
+      <NavBar />
       <h1>
         {parentObj.firstName} {parentObj.lastName}
       </h1>

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Axios from "axios";
 import styled from "styled-components";
 
+import NavBar from "./NavBar";
+
 function LogInUser(props) {
   console.log(props);
 
@@ -40,6 +42,7 @@ function LogInUser(props) {
 
   return (
     <LoginWrapper>
+      <NavBar />
       <form onSubmit={handleSubmit}>
         <label>
           Username
