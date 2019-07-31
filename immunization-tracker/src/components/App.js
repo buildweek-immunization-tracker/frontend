@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import InfoCard from "./InfoCard";
+import { Route } from "react-router-dom";
+import { Switch } from "react-router-dom";
 
 import Header from "./Header/Header";
 import ParentHomepage from "./ParentHomepage";
 import ParentEdit from "./ParentEdit";
-import { Route } from "react-router-dom";
-import { Switch } from "react-router-dom";
 
 
 
@@ -48,7 +48,7 @@ export default function App() {
   return (
     <div className="App">
 
-    <ShotsTable/>
+    {/* <ShotsTable/> */}
       <Switch>
         <Route path="/login" component={LogInUser} />
         <Route path="/" render={() => (
