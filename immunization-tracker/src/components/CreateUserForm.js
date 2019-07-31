@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
-function CreateUserForm({ touched, errors }) {
+function CreateUserForm(props) {
+  console.log("Props: ", props);
+
+  const { touched, errors } = props;
+
   return (
     <section>
       <Form>
@@ -72,7 +76,6 @@ export default withFormik({
   }),
 
   handleSubmit(values, formikBag) {
-    console.log(values);
     formikBag.resetForm();
     axios
       .post(
@@ -80,7 +83,8 @@ export default withFormik({
         values
       )
       .then(res => {
-        console.log(res);
+        console.log(formikBag.props);
+        formikBag.props.history.push("/");
       })
       .catch(err => {
         console.log(err);
