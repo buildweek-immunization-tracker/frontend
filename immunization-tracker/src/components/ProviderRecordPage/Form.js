@@ -28,13 +28,14 @@ export default function Form({ChildID, id, clinicName}){
 
     const handleChange = event =>{
         setInputValue(event.target.value);
-        console.log("LOOOOOOK HERE BITCH");
-        console.log(event.target.value);
+        // console.log(event.target.value);
     }
 
     const handleSubmit = (event) =>{
         event.preventDefault();
         setNewDate(inputValue);
+        // console.log(inputValue);
+        console.log(newDate);
     }
 
  
