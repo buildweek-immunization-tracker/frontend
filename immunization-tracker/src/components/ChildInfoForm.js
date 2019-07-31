@@ -4,35 +4,79 @@ import Axios from "axios";
 function ChildInfoForm(props) {
     console.log(props);
 
-    //isUpdate? if so, make a call to fetch the child's data based on passed-in id
+    //if a child ID is passed in, this is an update. Otherwise, this is a new child object.
+    const id = props.match.params.id;
+    const isUpdate = (id !== null);
+    
+    //state for new child object
     const [child, setChild] = useState({})
-    const [existingChild, updateExistingChild] = useState({})
 
-    //handle changes on form inputs
+    //state for existing child object
+    const [existingChild, updateExistingChild] = useState(null)
+
+    //change handler for new child object
     const handleChange = event => {
         const inputChild = { ...child, [event.target.name]: event.target.value };
         setChild(inputChild);
     };
 
-    //submit handler will control the form's submission, either creating a new child object and sending to API, or updating selected child info to API
-    const handleSubmit = event => {
+    //change handler for existing child object
+    const handleEdit = event => {
+        const editedChild = { ...existingChild, [event.target.name]: event.target.value };
+        updateExistingChild(editedChild);
+    }
+
+
+    //if this is a new child object, submit handler will post that object to the API
+    const handleNewSubmit = event => {
         event.preventDefault();
+        Axios.post(
+            "https://immunization-tracker-van.herokuapp.com/api/children",
+            child
+        )
+        .then(res => {
+            console.log(res.data);
+            props.history.push("/parent");
+        })
+        .catch(error => 
+            console.log(error)
+        );
     };
+
+    //if this is an existing child object, submit handler will use ID and existingChild to update selected child object on API
+    const handleExistingSubmit = event => {
+        event.preventDefault();
+        Axios.put(
+            `https://immunization-tracker-van.herokuapp.com/api/children/${id}`,
+            existingChild  
+        )
+        .then(res => {
+            console.log(res.data);
+            props.history.push("/parent");
+        })
+        .catch(error => 
+            console.log(error)
+        );
+    };
+
+    if (existingChild === null) {
+        return <div>Loading...</div>
+    }
 
     return (
         <div className="child-form">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={isUpdate ? handleExistingSubmit : handleNewSubmit}>
                 <label>
                     First Name
-                    <input type="text" name="firstName" value={child.firstName} onChange={handleChange} required />
+                    <input type="text" name="firstName" value={child.firstName} onChange={isUpdate ? handleEdit : handleChange} required />
                 </label>
                 <label>
                     Last Name
-                    <input type="text" name="lastName" value={child.lastName} onChange={handleChange} required />
+                    <input type="text" name="lastName" value={child.lastName} onChange={isUpdate ? handleEdit : handleChange} required />
                 </label>
                 <label>
                     Date of Birth
-                    <input type="date" name="DOB" value={child.DOB} onChange={handleChange} required />
+                    <input type="date" name="DOB" value={child.DOB} onChange={isUpdate ? handleEdit : handleChange} required />
                 </label>
                 <label>
                     Medical Provider
@@ -42,7 +86,7 @@ function ChildInfoForm(props) {
                 </label>
                 <label>
                     Medical Notes (Optional)
-                    <input type="text" name="comments" value={child.comments} onChange={handleChange} />
+                    <input type="text" name="comments" value={child.comments} onChange={isUpdate ? handleEdit : handleChange} />
                 </label>
                 <button type="submit" >Create Child Profile</button>
             </form>
