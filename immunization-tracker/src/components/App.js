@@ -5,6 +5,7 @@ import { Route, Redirect } from "react-router-dom";
 import LoginUser from "./LoginUser";
 import CreateUserForm from "./CreateUserForm";
 import ParentHomepage from "./ParentHomepage";
+import ProtecteRoute from "./ProtectedRoute";
 
 // styles
 import "../styles/App.scss";
@@ -13,7 +14,7 @@ export default function App() {
   return (
     <>
       <Route path="/createuser" component={CreateUserForm} />
-      <Route path="/dashboard" component={ParentHomepage} />
+      <ProtecteRoute path="/dashboard" component={ParentHomepage} />
       <Route
         exact
         path="/"
