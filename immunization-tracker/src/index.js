@@ -7,7 +7,7 @@ import "./styles/normalize.scss";
 import "./styles/index.scss";
 
 // components
-import App from "./components/App";
+import App from "./App";
 
 ReactDOM.render(
   <Router>
