@@ -48,7 +48,7 @@ export default function App() {
 
       <ShotsTable/>
       <Switch> 
-        <Route path="/login" render={()=>(<h1>This Page Will Be the Login</h1>)}/>
+        <Route path="/login" component={LogInUser}/>
         <Route path="/"
           render={()=>(
 
