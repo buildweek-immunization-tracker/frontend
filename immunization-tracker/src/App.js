@@ -7,6 +7,7 @@ import CreateUserForm from "./components/CreateUserForm";
 import ParentHomepage from "./components/ParentHomepage";
 import ProviderHomepage from "./components/ProviderHomepage";
 import ProtectedRoute from "./components/ProtectedRoute";
+import ObjectCreate from "./components/ObjectCreate";
 import NavBar from "./components/NavBar";
 
 // styles
@@ -21,6 +22,10 @@ export default function App() {
       <ProtectedRoute path="/parent/" component={ParentHomepage} />
       <ProtectedRoute path="/provider/" component={ProviderHomepage} />
       <Route
+        path="/parentsignin/"
+        render={props => <ObjectCreate {...props} />}
+      />
+      <Route
         path="/user/edit/:id"
         render={props => <ParentEdit {...props} />}
       />
@@ -31,7 +36,7 @@ export default function App() {
           if (!localStorage.getItem("loggedIn")) {
             return <Route path="/" component={LoginUser} />;
           } else if (JSON.parse(localStorage.getItem("role")) === "parent") {
-            return <Redirect to="/parent/" />;
+            return <Redirect to="/parentsignin/" />;
           } else if (JSON.parse(localStorage.getItem("role")) === "staff") {
             return <Redirect to="/provider" />;
           }
