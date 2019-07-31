@@ -1,7 +1,5 @@
 import React from "react";
 
-import NavBar from "./NavBar";
-
 const ParentHomepage = () => {
   const userId = JSON.parse(localStorage.getItem("user ID"));
 
