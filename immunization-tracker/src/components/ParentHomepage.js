@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import InfoCard from "./InfoCard";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import NavBar from "./NavBar";
 
 const ParentHomepage = props => {
   const [parent, setParent] = useState([]);
   const [children, setChildren] = useState([]);
   const id = 1;
+  // const id = JSON.parse(localStorage.getItem("user ID"))
 
   useEffect(() => {
     axios

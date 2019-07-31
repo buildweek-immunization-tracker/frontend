@@ -1,78 +1,44 @@
-import React, { useState } from "react";
-import InfoCard from "./InfoCard";
-import { Route } from "react-router-dom";
-import { Switch } from "react-router-dom";
 
-import Header from "./Header/Header";
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
+
+
+// components
+import LoginUser from "./LoginUser";
+import CreateUserForm from "./CreateUserForm";
 import ParentHomepage from "./ParentHomepage";
-import ParentEdit from "./ParentEdit";
-
+import ProviderHomepage from "./ProviderHomepage";
+import ProtecteRoute from "./ProtectedRoute";
+import NavBar from "./NavBar";
 
 
 // styles
 import "../styles/App.scss";
 
-// components
-import CreateUserForm from "./CreateUserForm";
-import LogInUser from "./LoginUser";
-import Axios from "axios";
-
-
 export default function App() {
-  const [people, setPeople] = useState([
-    {
-      firstName: "Elvis",
-      lastName: "Knapman",
-      currentProvider: "Current Provider Here"
-    },
-    {
-      firstName: "Dave",
-      lastName: "Irwin",
-      currentProvider: "Current Provider Here"
-    },
-    {
-      firstName: "Tatiana",
-      lastName: "Faramarzi",
-      currentProvider: "Current Provider Here"
-    }
-    // { name: "Trang Nguyen", currentProvider: "Current Provider Here" },
-    // { name: "Van Jordan", currentProvider: "Current Provider Here" }
-  ]);
-
-  let NavName = [
-    {name: "Home", link: "/"},
-    {name: "Account", link: "/userForm"},
-    {name: "PDF", link: "/pdf"},
-    {name: "Log Out", link: "/login"}
-  ]
   return (
-    <div className="App">
 
-    {/* <ShotsTable/> */}
-      <Switch>
-        <Route path="/login" component={LogInUser} />
-        <Route path="/" render={() => (
+    <>
+      <Route path="/" render={props => <NavBar {...props} />} />
+      <Route component={NavBar} />
+      <Route path="/createuser" component={CreateUserForm} />
+      <ProtecteRoute path="/parent/" component={ParentHomepage} />
+      <ProtecteRoute path="/provider/" component={ProviderHomepage} />
+      <Route
+        exact
+        path="/"
+        render={() => {
+          if (!localStorage.getItem("token")) {
+            return <Route path="/" component={LoginUser} />;
+          } else if (JSON.parse(localStorage.getItem("role")) === "parent") {
+            return <Redirect to="/parent/" />;
+          } else if (JSON.parse(localStorage.getItem("role")) === "staff") {
+            return <Redirect to="/provider" />;
+          }
+        }}
+      />
 
-            <div>
-              <Header array={NavName} />
-              <div>
-                <Route path="/userForm" component={CreateUserForm} />
-                <Route
-                  path="/userhome"
-                  render={props => <ParentHomepage {...props} />}
-                />
-                <Route
-                  path="/edit/:id"
-                  render={props => <ParentEdit {...props} />}
-                />
-              </div>
-            </div>
-
-          )}/>
-
-
-      </Switch>
-
-    </div>
+      <Route path="*" render={() => <Redirect to="/" />} />
+    </>
   );
 }
