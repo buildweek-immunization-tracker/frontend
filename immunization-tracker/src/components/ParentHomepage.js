@@ -44,7 +44,6 @@ const ParentHomepage = props => {
 
   return (
     <div>
-      <NavBar />
       <h1>
         {parentObj.firstName} {parentObj.lastName}
       </h1>

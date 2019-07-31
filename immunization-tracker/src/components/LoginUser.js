@@ -27,6 +27,7 @@ function LogInUser(props) {
         localStorage.setItem("token", JSON.stringify(res.data.token));
         localStorage.setItem("role", JSON.stringify(res.data.role));
         localStorage.setItem("user ID", JSON.stringify(res.data.userId));
+        localStorage.setItem("loggedIn", true);
         props.history.push("/");
       })
       .catch(error =>
@@ -42,7 +43,6 @@ function LogInUser(props) {
 
   return (
     <LoginWrapper>
-      <NavBar />
       <form onSubmit={handleSubmit}>
         <label>
           Username

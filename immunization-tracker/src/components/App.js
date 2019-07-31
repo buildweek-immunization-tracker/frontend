@@ -7,6 +7,7 @@ import CreateUserForm from "./CreateUserForm";
 import ParentHomepage from "./ParentHomepage";
 import ProviderHomepage from "./ProviderHomepage";
 import ProtecteRoute from "./ProtectedRoute";
+import NavBar from "./NavBar";
 
 // styles
 import "../styles/App.scss";
@@ -14,6 +15,8 @@ import "../styles/App.scss";
 export default function App() {
   return (
     <>
+      <Route path="/" render={props => <NavBar {...props} />} />
+      <Route component={NavBar} />
       <Route path="/createuser" component={CreateUserForm} />
       <ProtecteRoute path="/parent/" component={ParentHomepage} />
       <ProtecteRoute path="/provider/" component={ProviderHomepage} />

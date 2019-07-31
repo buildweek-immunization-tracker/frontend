@@ -1,31 +1,39 @@
 import React from "react";
-import { Link, NavLink, Redirect } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-export default function NavBar() {
-  function logout() {
+function NavBar(props) {
+  function logout(e) {
+    localStorage.removeItem("loggedIn");
     localStorage.removeItem("token");
     localStorage.removeItem("role");
     localStorage.removeItem("user ID");
+    props.history.push("/");
   }
 
-  if (localStorage.getItem("token")) {
-    return (
-      <Nav>
-        <Link to="" onClick={e => logout()} className="logout">
-          Logout
-        </Link>
-      </Nav>
-    );
-  } else {
-    return (
-      <Nav>
-        <NavLink to="/">Login</NavLink>
-        <NavLink to="/createuser">Create Account</NavLink>
-      </Nav>
-    );
+  function setNav() {
+    if (localStorage.getItem("loggedIn") != null) {
+      return (
+        <Nav>
+          <Link to="" onClick={e => logout(e)} className="logout">
+            Logout
+          </Link>
+        </Nav>
+      );
+    } else {
+      return (
+        <Nav>
+          <NavLink to="/">Login</NavLink>
+          <NavLink to="/createuser">Create Account</NavLink>
+        </Nav>
+      );
+    }
   }
+
+  return <div>{setNav()}</div>;
 }
+
+export default NavBar;
 
 const Nav = styled.nav`
   position: fixed;

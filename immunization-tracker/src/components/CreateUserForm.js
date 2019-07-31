@@ -13,7 +13,6 @@ function CreateUserForm(props) {
 
   return (
     <AddUserWrapper>
-      <NavBar />
       <Form>
         <label>
           Username

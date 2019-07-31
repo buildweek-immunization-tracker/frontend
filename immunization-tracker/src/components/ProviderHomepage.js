@@ -7,7 +7,6 @@ const ParentHomepage = () => {
 
   return (
     <div className="provider-wrapper">
-      <NavBar />
       <br />
       <br />
       <div>Provider Home Page for {userId}</div>
