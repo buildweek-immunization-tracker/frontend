@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import InfoCard from "./InfoCard";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import NavBar from "./NavBar";
 
 const ParentHomepage = props => {
   const [parent, setParent] = useState([]);
@@ -10,6 +9,29 @@ const ParentHomepage = props => {
   const id = 1;
   // const id = JSON.parse(localStorage.getItem("user ID"));
   console.log("the user id is", id);
+
+  const newParent = {
+    firstName: localStorage.getItem("firstName"),
+    lastName: localStorage.getItem("lastName"),
+    userId: localStorage.getItem("user ID"),
+    username: localStorage.getItem("username"),
+    email: localStorage.getItem("email")
+  };
+
+  useEffect(() => {
+    axios
+      .post(
+        `https://immunization-tracker-van.herokuapp.com/api/parents`,
+        newParent
+      )
+      .then(response => {
+        const data = response.data;
+        console.log("children data", data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  });
 
   useEffect(() => {
     axios
@@ -20,6 +42,9 @@ const ParentHomepage = props => {
         const data = response.data;
         setChildren(data);
         console.log("children data", data);
+      })
+      .catch(err => {
+        console.log(err);
       });
   }, [id]);
 
