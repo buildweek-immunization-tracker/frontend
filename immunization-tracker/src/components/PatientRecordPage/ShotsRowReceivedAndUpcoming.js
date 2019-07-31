@@ -13,7 +13,6 @@ export default function ShotsRow({name, dose, location,dateReceived }){
         )
     }
     else return(
-
         <Table.Row>
             <Table.Cell>{name}</Table.Cell>
             <Table.Cell>{dose}</Table.Cell>

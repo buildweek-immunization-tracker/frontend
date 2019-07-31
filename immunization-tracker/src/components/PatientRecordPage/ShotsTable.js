@@ -5,6 +5,7 @@ import { Icon, Label, Menu, Table } from 'semantic-ui-react'
 import ShotsRow from "./ShotsRowReceivedAndUpcoming"
 import styled from "styled-components";
 import ShotsRowMissed from "./ShotsRowMissed";
+import ShotsHeader from "./ShotsHeader";
 
 export default function ShotsTable({id}){
 
@@ -12,7 +13,7 @@ export default function ShotsTable({id}){
     const [shotsMissedArr, setShotsMissedArr] = useState([])
 
     useEffect(()=>{
-        Axios.get(`https://immunization-tracker-van.herokuapp.com/api/immunizations/taken/1`)
+        Axios.get(`https://immunization-tracker-van.herokuapp.com/api/immunizations/taken/${id}`)
             .then(data =>{
                 console.log(data.data);
                 setShotsRAUArr(data.data)
@@ -21,7 +22,7 @@ export default function ShotsTable({id}){
     },[])
 
     useEffect(()=>{
-        Axios.get(`https://immunization-tracker-van.herokuapp.com/api/immunizations/taken/1`)
+        Axios.get(`https://immunization-tracker-van.herokuapp.com/api/immunizations/missing/${id}`)
             .then(data =>{
                 console.log(data.data);
                 setShotsMissedArr(data.data)
@@ -38,27 +39,20 @@ export default function ShotsTable({id}){
     return(
         <NavContainer>
             <Table celled structured>
-                <Table.Header>
-                <Table.Row>
-                    <Table.HeaderCell rowSpan='2'>Name</Table.HeaderCell>
-                    <Table.HeaderCell rowSpan='2'>Dose</Table.HeaderCell>
-                    <Table.HeaderCell rowSpan='2'>Provider</Table.HeaderCell>
-                    <Table.HeaderCell colSpan='1'>Status</Table.HeaderCell>
-                </Table.Row>
-                </Table.Header>
-            
+                <ShotsHeader type="MISSING"/>
                 <Table.Body>
-
-                    {shotsRAUArr.map((shot)=>
-                        <ShotsRow 
+                    {shotsMissedArr.map((shot)=>
+                        <ShotsRowMissed 
                         name={shot.description} 
                         dose={shot.dose}
                         location={shot.location}
                         dateReceived={shot.dateReceived}
                     />)}
-
-                    {shotsMissedArr.map((shot)=>
-                        <ShotsRowMissed 
+                </Table.Body>
+                <ShotsHeader type="RECEIVED/UPCOMING"/>
+                <Table.Body>
+                    {shotsRAUArr.map((shot)=>
+                        <ShotsRow 
                         name={shot.description} 
                         dose={shot.dose}
                         location={shot.location}
