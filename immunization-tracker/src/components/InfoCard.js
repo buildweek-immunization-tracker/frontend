@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
+
 const UserCard = ({ person }) => {
   const [parents, setParents] = useState([]);
 
@@ -47,6 +48,7 @@ const UserCard = ({ person }) => {
   return (
     <>
       <CardContainer>
+
         <>
           <Card>
             <div>
