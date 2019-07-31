@@ -3,6 +3,10 @@ import Axios from "axios";
 import styled from "styled-components";
 
 function LogInUser(props) {
+
+ // console.log(props);
+
+
   const [user, setUser] = useState({});
 
   //hold state of form, and return to empty form once submit button is clicked

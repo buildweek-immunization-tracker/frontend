@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 const ParentHomepage = props => {
   const [parent, setParent] = useState([]);
   const [children, setChildren] = useState([]);
+
   const id = 1;
   // const id = JSON.parse(localStorage.getItem("user ID"));
   console.log("the user id is", id);
@@ -32,6 +33,7 @@ const ParentHomepage = props => {
         console.log(err);
       });
   });
+
 
   useEffect(() => {
     axios
