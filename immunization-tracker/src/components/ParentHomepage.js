@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import InfoCard from "./InfoCard";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import ShotsTableP from "./ProviderRecordPage/ShotsTableP";
 
 
 
