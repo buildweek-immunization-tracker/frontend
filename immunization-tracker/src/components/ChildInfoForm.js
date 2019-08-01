@@ -1,73 +1,80 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
+import { Button, Form } from "semantic-ui-react";
 
 function ChildInfoForm(props) {
     console.log(props);
 
+    const [formData, setFormData] = useState({
+        "firstName":"", 
+        "lastName":"", 
+        "DOB":null, 
+        "provider":null, 
+        "comments":""});
+    const [providers, setProviders] = useState([]);
+    
+    let id = null;
+    let isUpdate = false;
     //if a child ID is passed in, this is an update. Otherwise, this is a new child object.
-    const id = props.match.params.id;
-    const isUpdate = (id !== null);
+    if (id in props.match.params) {
+        id = props.match.params.id;
+        isUpdate = true;
+    } 
 
     useEffect(() => {
-        Axios
-          .get(`https://immunization-tracker-van.herokuapp.com/api/children/${id}`)
-          .then(res => {
-            updateExistingChild(...res.data);
-          });
-      }, []);
+        if (isUpdate) {
+            Axios
+            .get(`https://immunization-tracker-van.herokuapp.com/api/children/${id}`)
+            .then(res => setFormData(...formData, ...res.data));
+        }
+    }, []);
+
+
+    useEffect(() => {
+        Axios.get('https://immunization-tracker-van.herokuapp.com/api/providers')
+        .then(res => setProviders(res.data));
+    }, []);
     
-    
-    const [child, setChild] = useState({})
-    const [existingChild, updateExistingChild] = useState(null)
 
     //change handler for new child object
     const handleChange = event => {
-        const inputChild = { ...child, [event.target.name]: event.target.value };
-        setChild(inputChild);
+        const inputChild = { ...formData, [event.target.name]: event.target.value };
+        setFormData(inputChild);
     };
-
-    //change handler for existing child object
-    const handleEdit = event => {
-        const editedChild = { ...existingChild, [event.target.name]: event.target.value };
-        updateExistingChild(editedChild);
-    }
 
 
     //if this is a new child object, submit handler will post that object to the API
-    const handleNewSubmit = event => {
+    const handleSubmit = event => {
         event.preventDefault();
-        Axios.post(
-            "https://immunization-tracker-van.herokuapp.com/api/children",
-            child
-        )
-        .then(res => {
-            console.log(res.data);
-            props.history.push("/parent");
-        })
-        .catch(error => 
-            console.log(error)
-        );
+        if (isUpdate){
+            Axios.put(`https://immunization-tracker-van.herokuapp.com/api/children/${id}`,
+                formData)
+            .then(res => {
+                console.log(res.data);
+                props.history.push("/parent");
+            })
+            .catch(error => 
+                console.log(error)
+            );
+        } else {
+            Axios.post(
+                "https://immunization-tracker-van.herokuapp.com/api/children",
+                formData)
+            .then(res => {
+                console.log(res.data);
+                props.history.push("/parent");
+            })
+            .catch(error => 
+                console.log(error)
+            );
+        } 
     };
 
-    //if this is an existing child object, submit handler will use ID and existingChild to update selected child object on API
-    const handleExistingSubmit = event => {
-        event.preventDefault();
-        Axios.put(
-            `https://immunization-tracker-van.herokuapp.com/api/children/${id}`,
-            existingChild  
-        )
-        .then(res => {
-            console.log(res.data);
-            props.history.push("/parent");
-        })
-        .catch(error => 
-            console.log(error)
-        );
-    };
+    
 
-    if (existingChild === null) {
-        return <div>Loading...</div>
-    }
+    // if (existingChild === null) {
+    //     return <div>Loading...</div>
+    // }
 
     const toDeleteChild = event => {
         event.preventDefault();
@@ -82,33 +89,46 @@ function ChildInfoForm(props) {
     };
 
     return (
-        <div className="child-form">
-            <form onSubmit={isUpdate ? handleExistingSubmit : handleNewSubmit}>
-                <label>
-                    First Name
-                    <input type="text" name="firstName" value={child.firstName} onChange={isUpdate ? handleEdit : handleChange} required />
-                </label>
-                <label>
-                    Last Name
-                    <input type="text" name="lastName" value={child.lastName} onChange={isUpdate ? handleEdit : handleChange} required />
-                </label>
-                <label>
-                    Date of Birth
-                    <input type="date" name="DOB" value={child.DOB} onChange={isUpdate ? handleEdit : handleChange} required />
-                </label>
-                <label>
-                    Medical Provider
-                    <select name="providers" required>
-                        {/* map over providers array and add provider name as value */}
-                    </select>
-                </label>
-                <label>
-                    Medical Notes (Optional)
-                    <input type="text" name="comments" value={child.comments} onChange={isUpdate ? handleEdit : handleChange} />
-                </label>
-                <button type="submit">Set Child Profile</button>
-            </form>
-            <button onClick={toDeleteChild} >Delete Child Profile</button>
+        <div className="child-form-container">
+            <Form onSubmit={handleSubmit}>
+                <Form.Field>
+                    <label>
+                        First Name
+                        <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
+                    </label>
+                </Form.Field>
+                <Form.Field>
+                    <label>
+                        Last Name
+                        <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
+                    </label>
+                </Form.Field>
+                <Form.Field>
+                    <label>
+                        Date of Birth
+                        <input type="date" name="DOB" value={formData.DOB} onChange={handleChange} required />
+                    </label>
+                </Form.Field>
+                <Form.Field>
+                    <label>
+                        Medical Provider
+                        <select name="provider" value={formData.provider} onChange={handleChange} required>
+                            {...providers.map(provider => {
+                                return <option value={provider.id}> 
+                                {provider.name} </option>
+                            }) }
+                        </select>
+                    </label>
+                </Form.Field>
+                <Form.Field>
+                    <label>
+                        Medical Notes (Optional)
+                        <input type="text" name="comments" value={formData.comments} onChange={handleChange} />
+                    </label>
+                </Form.Field>
+                <Button type="submit" >Set Child Profile</Button>
+            </Form>
+            <Button onClick={toDeleteChild} >Delete Child Profile</Button>
         </div>
 
     );
