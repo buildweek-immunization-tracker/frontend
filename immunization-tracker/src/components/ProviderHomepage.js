@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 
+
 import SelectedProviderDetails from "./SelectedProviderDetails";
 
 export default function ProviderHomepage() {
@@ -31,6 +32,7 @@ export default function ProviderHomepage() {
   };
 
   return (
+
     <div className="provider-homepage-wrapper">
       <h2>Provider Dashboard</h2>
       <h3>{JSON.parse(localStorage.getItem("userMessage"))}</h3>
@@ -43,6 +45,7 @@ export default function ProviderHomepage() {
         <button>Get Provider Profile</button>
       </form>
       <SelectedProviderDetails providerId={providerId} />
+
     </div>
   );
 }

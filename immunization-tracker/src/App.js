@@ -9,8 +9,10 @@ import ProviderHomepage from "./components/ProviderHomepage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ObjectCreate from "./components/ObjectCreate";
 import NavBar from "./components/NavBar";
-// import ShotsTableP from "./components/ProviderRecordPage/ShotsTableP"
-// <Route path="/chartTest" render={() => <ShotsTableP id="1" />} />
+
+import ShotsTableP from "./components/ProviderRecordPage/ShotsTableP";
+import ChildInfoForm from "./components/ChildInfoForm";
+
 
 // styles
 import "./styles/App.scss";
@@ -21,16 +23,20 @@ export default function App() {
     <>
       <Route path="/" component={NavBar} />
       <Route path="/createuser" component={CreateUserForm} />
-      <ProtectedRoute path="/parent/" component={ParentHomepage} />
-      <ProtectedRoute path="/provider/" component={ProviderHomepage} />
+      <ProtectedRoute path="/parent" component={ParentHomepage} />
+      <ProtectedRoute path="/provider" component={ProviderHomepage} />
       <Route
-        path="/parentsignin/"
+        path="/parentsignin"
         render={props => <ObjectCreate {...props} />}
       />
       <Route
         path="/user/edit/:id"
         render={props => <ParentEdit {...props} />}
       />
+      <Route 
+        path="/update-child-info/:id" render={props => <ChildInfoForm {...props}/>}/>
+      <Route 
+        path="/create-child/:parentId" render={props => <ChildInfoForm {...props}/>}/>
       <Route
         exact
         path="/"
@@ -38,14 +44,14 @@ export default function App() {
           if (!localStorage.getItem("loggedIn")) {
             return <Route path="/" component={LoginUser} />;
           } else if (JSON.parse(localStorage.getItem("role")) === "parent") {
-            return <Redirect to="/parentsignin/" />;
+            return <Redirect to="/parentsignin" />;
           } else if (JSON.parse(localStorage.getItem("role")) === "staff") {
             return <Redirect to="/provider" />;
           }
         }}
       />
 
-      <Route path="*" render={() => <Redirect to="/" />} />
+      {/* <Route path="*" render={() => <Redirect to="/" />} /> */}
     </>
   );
 }

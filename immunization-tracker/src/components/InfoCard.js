@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const UserCard = ({ person }) => {
   const [parents, setParents] = useState([]);
@@ -45,7 +46,7 @@ const UserCard = ({ person }) => {
     font-size: 0.8rem;
   `;
 
-  return (
+  return ( 
     <>
       <CardContainer>
 
@@ -61,7 +62,9 @@ const UserCard = ({ person }) => {
               <p>{person.currentProvider}</p>
               <div>
                 <Button>View</Button>
+              <Link to={`/update-child-info/${person.userId}`}>
                 <Button>Update</Button>
+              </Link>
               </div>
             </div>
           </Card>

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Icon, Label, Menu, Table } from 'semantic-ui-react';
 import Form from "./Form";
 
-export default function ShotsRowP({name, dose, location,dateReceived }){
+export default function ShotsRowP({childId,id, name, dose, location, dateReceived }){
     if(dateReceived !=null){
         return(
             <Table.Row>
@@ -10,7 +10,7 @@ export default function ShotsRowP({name, dose, location,dateReceived }){
                 <Table.Cell>{dose}</Table.Cell>
                 <Table.Cell>{location}</Table.Cell>
                 <Table.Cell textAlign='center'><Icon color='green' name='checkmark' size='large' />{dateReceived}</Table.Cell>
-                <Table.Cell><Form/></Table.Cell>
+                <Table.Cell><Form childId={childId} clinicName={location} shotID={id}/></Table.Cell>
             </Table.Row>
         )
     }
@@ -20,7 +20,7 @@ export default function ShotsRowP({name, dose, location,dateReceived }){
             <Table.Cell>{dose}</Table.Cell>
             <Table.Cell>{location}</Table.Cell>
             <Table.Cell textAlign='center'><Icon color='yellow' name='checkmark' size='large' />{dateReceived}</Table.Cell>
-            <Table.Cell><Form/></Table.Cell>
+            <Table.Cell><Form childId={childId} clinicName={location} shotID={id}/></Table.Cell>
         </Table.Row>
     )
 }
