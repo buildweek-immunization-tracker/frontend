@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
+import { Button, Form } from "semantic-ui-react";
 
 function ChildInfoForm(props) {
     console.log(props);
@@ -88,36 +89,46 @@ function ChildInfoForm(props) {
     };
 
     return (
-        <div className="child-form">
-            <form onSubmit={handleSubmit}>
-                <label>
-                    First Name
-                    <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
-                </label>
-                <label>
-                    Last Name
-                    <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
-                </label>
-                <label>
-                    Date of Birth
-                    <input type="date" name="DOB" value={formData.DOB} onChange={handleChange} required />
-                </label>
-                <label>
-                    Medical Provider
-                    <select name="provider" value={formData.provider} onChange={handleChange} required>
-                        {...providers.map(provider => {
-                            return <option value={provider.id}> 
-                            {provider.name} </option>
-                        }) }
-                    </select>
-                </label>
-                <label>
-                    Medical Notes (Optional)
-                    <input type="text" name="comments" value={formData.comments} onChange={handleChange} />
-                </label>
-                <button type="submit">Set Child Profile</button>
-            </form>
-            <button onClick={toDeleteChild} >Delete Child Profile</button>
+        <div className="child-form-container">
+            <Form onSubmit={handleSubmit}>
+                <Form.Field>
+                    <label>
+                        First Name
+                        <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
+                    </label>
+                </Form.Field>
+                <Form.Field>
+                    <label>
+                        Last Name
+                        <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
+                    </label>
+                </Form.Field>
+                <Form.Field>
+                    <label>
+                        Date of Birth
+                        <input type="date" name="DOB" value={formData.DOB} onChange={handleChange} required />
+                    </label>
+                </Form.Field>
+                <Form.Field>
+                    <label>
+                        Medical Provider
+                        <select name="provider" value={formData.provider} onChange={handleChange} required>
+                            {...providers.map(provider => {
+                                return <option value={provider.id}> 
+                                {provider.name} </option>
+                            }) }
+                        </select>
+                    </label>
+                </Form.Field>
+                <Form.Field>
+                    <label>
+                        Medical Notes (Optional)
+                        <input type="text" name="comments" value={formData.comments} onChange={handleChange} />
+                    </label>
+                </Form.Field>
+                <Button type="submit" >Set Child Profile</Button>
+            </Form>
+            <Button onClick={toDeleteChild} >Delete Child Profile</Button>
         </div>
 
     );

@@ -33,7 +33,7 @@ export default function App() {
         render={props => <ParentEdit {...props} />}
       />
       <Route 
-        path="/update-child-info/:id" />
+        path="/update-child-info/:id" component={ChildInfoForm}/>
       <Route
         exact
         path="/"
