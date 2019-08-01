@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
 
 function ChildInfoForm(props) {
@@ -11,22 +11,23 @@ function ChildInfoForm(props) {
         "provider":null, 
         "comments":""});
     const [providers, setProviders] = useState([]);
-
+    
+    let id = null;
+    let isUpdate = false;
     //if a child ID is passed in, this is an update. Otherwise, this is a new child object.
     if (id in props.match.params) {
         id = props.match.params.id;
         isUpdate = true;
-    } else {
-        id = null;
-        isUpdate = false;
-    }
-    if (isUpdate) {
-        useEffect(() => {
+    } 
+
+    useEffect(() => {
+        if (isUpdate) {
             Axios
-              .get(`https://immunization-tracker-van.herokuapp.com/api/children/${id}`)
-              .then(res => setFormData(...formData, ...res.data));
-          }, []);
-    }
+            .get(`https://immunization-tracker-van.herokuapp.com/api/children/${id}`)
+            .then(res => setFormData(...formData, ...res.data));
+        }
+    }, []);
+
 
     useEffect(() => {
         Axios.get('https://immunization-tracker-van.herokuapp.com/api/providers')
@@ -57,7 +58,7 @@ function ChildInfoForm(props) {
         } else {
             Axios.post(
                 "https://immunization-tracker-van.herokuapp.com/api/children",
-                child)
+                formData)
             .then(res => {
                 console.log(res.data);
                 props.history.push("/parent");
@@ -103,10 +104,9 @@ function ChildInfoForm(props) {
                 </label>
                 <label>
                     Medical Provider
-                    <select name="provider" onChange={handleChange} required>
-                        {providers.map(provider => {
-                            <option value={provider.id} 
-                            selected={formData.provider === provider.id ? true : undefined}> 
+                    <select name="provider" value={formData.provider} onChange={handleChange} required>
+                        {...providers.map(provider => {
+                            return <option value={provider.id}> 
                             {provider.name} </option>
                         }) }
                     </select>
