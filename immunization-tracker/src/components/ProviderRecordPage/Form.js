@@ -6,8 +6,8 @@ export default function Form({childID, shotID, clinicName}){
 
     
     const [newDate, setNewDate] = useState({
-        "location": clinicName,
-        "childId": childID,
+        "location": "Hospital",
+        "childId": 1,
         "immunizationId":shotID,
         "dateReceived": ""
     })
