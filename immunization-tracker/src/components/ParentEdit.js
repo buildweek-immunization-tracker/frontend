@@ -86,9 +86,34 @@ const ParentEdit = props => {
         setPerson(...response.data);
         // take object out of array and set the state
         setNewData(...response.data);
+        const {
+          firstName,
+          lastName,
+          address1,
+          address2,
+          zip,
+          state,
+          city,
+          phone,
+          comments,
+          userId
+        } = response.data[0];
+        setNewData({
+          firstName,
+          lastName,
+          address1,
+          address2,
+          zip,
+          state,
+          city,
+          phone,
+          comments,
+          userId
+        });
       });
   }, []);
 
+  console.log("NEW DATA", newData);
   const onDataChange = event => {
     setNewData({ ...newData, [event.target.name]: event.target.value });
   };
@@ -97,10 +122,23 @@ const ParentEdit = props => {
     event.preventDefault();
 
     // we will send API request for user object to be updated using 'newData' object
-    setStatusMessage("Profile successfully updated");
-    setStatusMessage(
-      "Something went wrong, please check your input and try again."
-    );
+    axios
+      .put(
+        `https://immunization-tracker-van.herokuapp.com/api/parents/${id}`,
+        newData
+      )
+      .then(response => {
+        props.history.push("/parent/");
+      })
+      .catch(error => {
+        console.log("There was an error:", error);
+        props.history.push("/parent/");
+      });
+
+    // setStatusMessage("Profile successfully updated");
+    // setStatusMessage(
+    //   "Something went wrong, please check your input and try again."
+    // );
   };
 
   if (!person) {
