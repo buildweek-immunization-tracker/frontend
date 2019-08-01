@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import InfoCard from "./InfoCard";
 import axios from "axios";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
+import ShotsTableP from "./ProviderRecordPage/ShotsTableP";
 
 const ParentHomepage = props => {
   const [parent, setParent] = useState([]);
@@ -48,34 +50,64 @@ const ParentHomepage = props => {
   console.log("parentObj", parentObj);
 
   return (
-    <div>
-      {/* <ShotsTableP id="1"/> */}
-      <h1>
-        {parentObj.firstName} {parentObj.lastName}
-      </h1>
-      <p>
-        (<em>{parentObj.username})</em>
-      </p>
-      <p>{parentObj.address1}</p>
-      <p>
-        {parentObj.city}, {parentObj.state} {parentObj.zip}
-      </p>
-      <p>{parentObj.phone}</p>
-      <p>{parentObj.email}</p>
+    <Wrapper>
+      <DashboardHeader>Parent Dashboard</DashboardHeader>
       <div>
-        <Link to={`/user/edit/${id}`}>
-          <button>Edit Profile</button>
-        </Link>
-      </div>
-      {children.length === 0 ? (
+        {/* <ShotsTableP id="1"/> */}
+        <h1>
+          {parentObj.firstName} {parentObj.lastName}
+        </h1>
         <p>
-          You have not added any children. Please add some to start tracking.
+          (<em>{parentObj.username})</em>
         </p>
-      ) : (
-        children.map(child => <InfoCard key={child.id} person={child} />)
-      )}
-    </div>
+        <p>{parentObj.address1}</p>
+        <p>
+          {parentObj.city}, {parentObj.state} {parentObj.zip}
+        </p>
+        <p>{parentObj.phone}</p>
+        <p>{parentObj.email}</p>
+        <div>
+          <Link to={`/user/edit/${id}`}>
+            <Button>Edit Profile</Button>
+          </Link>
+        </div>
+        <h1>Children</h1>
+        {children.length === 0 ? (
+          <p>You currently have no children added to track in your profile.</p>
+        ) : (
+          children.map(child => <InfoCard key={child.id} person={child} />)
+        )}
+        <div>
+          <Link to={`/create-child/${id}`}>
+            <Button>Add Child</Button>
+          </Link>
+        </div>
+      </div>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  width: 80%;
+  padding: 2rem;
+  margin: 5rem auto 0;
+  border: 3px solid #ececec;
+  border-radius: 4px;
+`;
+
+const Button = styled.button`
+  padding: 0.5rem 1rem;
+  min-width: 7rem;
+  background: transparent;
+  border: 1px solid black;
+  outline: none;
+`;
+
+const DashboardHeader = styled.h1`
+  background: #f4f4f4;
+  font-size: 2.7rem;
+  padding: 0.8rem;
+  border-bottom: 1px solid black;
+`;
 
 export default ParentHomepage;
