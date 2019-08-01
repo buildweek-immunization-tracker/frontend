@@ -13,12 +13,14 @@ export default function Form({ChildID, id, clinicName}){
         "dateReceived": ""
     })
 
-    // useEffect(()=>{
-    // }, [newDate])
+    useEffect(()=>{
+        console.log("From use effect", inputValue)
+    }, [inputValue])
 
     const handleChange = event =>{
-        setInputValue(event.target.value);
-        console.log("This is set input val", event.target.value);
+        // setInputValue(event.target.value);
+        setNewDate({...newDate,"dateReceived":event.target.value});
+        console.log("This date input", event.target.value);
         console.log("This is input val after", inputValue);
     }
 
@@ -26,7 +28,7 @@ export default function Form({ChildID, id, clinicName}){
         event.preventDefault();
         // console.log("This is input value", inputValue);
         // console.log("This is new date before", newDate);
-        setNewDate({...newDate,"dateReceived":inputValue});
+        
         // console.log("This is input value after setting", inputValue);
         // // console.log(inputValue);
         console.log("This is new after", newDate);
@@ -58,7 +60,7 @@ export default function Form({ChildID, id, clinicName}){
                         name="cal"
                         min="1930-01-01" max="2050-12-31"
                         onChange={event => handleChange(event)}
-                        value={inputValue}
+                        value={newDate.dateReceived}
                         />
                      <button>submit</button>
                 </form>
