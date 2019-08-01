@@ -2,26 +2,24 @@ import React, {useState, useEffect} from 'react';
 import axios from "axios";
 import ShotsTableP from"./ShotsTableP";
 
-export default function Form({ChildID, id, clinicName}){
+export default function Form({childID, shotID, clinicName}){
 
-    const [inputValue, setInputValue] = useState("");
     
     const [newDate, setNewDate] = useState({
-        "location": "Hospital",
-        "childId": 1,
-        "immunizationId": 3,
+        "location": clinicName,
+        "childId": childID,
+        "immunizationId":shotID,
         "dateReceived": ""
     })
 
-    useEffect(()=>{
-        console.log("From use effect", inputValue)
-    }, [inputValue])
+    // useEffect(()=>{
+    //     console.log("From use effect", newDate)
+    // }, [newDate])
 
     const handleChange = event =>{
         // setInputValue(event.target.value);
         setNewDate({...newDate,"dateReceived":event.target.value});
-        console.log("This date input", event.target.value);
-        console.log("This is input val after", inputValue);
+        console.log("This date input", event.target.value);   
     }
 
     const handleSubmit = (event) =>{

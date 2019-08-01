@@ -46,6 +46,8 @@ export default function ShotsTableP({id}){
                         dose={shot.dose}
                         location={shot.location}
                         dateReceived={shot.dateReceived}
+                        id={shot.id}
+                        childId={id}
                     />)}
                 </Table.Body>
                 <ShotsHeaderP type="RECEIVED/UPCOMING"/>
@@ -56,6 +58,8 @@ export default function ShotsTableP({id}){
                         dose={shot.dose}
                         location={shot.location}
                         dateReceived={shot.dateReceived}
+                        id={shot.id}
+                        childId={id}
                     />)}
                 </Table.Body>
             </Table>
