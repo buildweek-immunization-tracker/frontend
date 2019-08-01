@@ -68,7 +68,34 @@ function ChildInfoForm(props) {
         .catch(error => 
             console.log(error)
         );
-    };
+    } else {
+      Axios.post(
+          "https://immunization-tracker-van.herokuapp.com/api/children",
+          formData)
+      .then(res => {
+          console.log(res.data);
+          props.history.push("/parent");
+      })
+      .catch(error => 
+          console.log(error)
+      );
+  } 
+};
+
+  // if (existingChild === null) {
+  //     return <div>Loading...</div>
+  // }
+  const toDeleteChild = event => {
+    event.preventDefault();
+    Axios.delete(
+        `https://immunization-tracker-van.herokuapp.com/api/children/${id}`)
+    .then(res => {
+        props.history.push("/parent");
+    })
+    .catch(error => 
+        console.log(error)
+    );
+  };
 
     console.log("PROVIDERS", providers);
 
