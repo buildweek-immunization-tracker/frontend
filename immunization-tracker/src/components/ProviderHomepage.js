@@ -1,4 +1,5 @@
 import React from "react";
+import ShotsTableP from "./ProviderRecordPage/ShotsTableP";
 
 const ParentHomepage = () => {
   const userId = JSON.parse(localStorage.getItem("user ID"));
@@ -8,6 +9,7 @@ const ParentHomepage = () => {
       <br />
       <br />
       <div>Provider Home Page for {userId}</div>
+      <ShotsTableP id="1"/>
     </div>
   );
 };

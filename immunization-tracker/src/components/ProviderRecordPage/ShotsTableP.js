@@ -15,7 +15,6 @@ export default function ShotsTableP({id}){
     useEffect(()=>{
         Axios.get(`https://immunization-tracker-van.herokuapp.com/api/immunizations/taken/${id}`)
             .then(data =>{
-                console.log(data.data);
                 setShotsRAUArr(data.data)
             })
             .catch(error=>console.log(error))
@@ -47,6 +46,8 @@ export default function ShotsTableP({id}){
                         dose={shot.dose}
                         location={shot.location}
                         dateReceived={shot.dateReceived}
+                        id={shot.id}
+                        childId={id}
                     />)}
                 </Table.Body>
                 <ShotsHeaderP type="RECEIVED/UPCOMING"/>
@@ -57,6 +58,8 @@ export default function ShotsTableP({id}){
                         dose={shot.dose}
                         location={shot.location}
                         dateReceived={shot.dateReceived}
+                        id={shot.id}
+                        childId={id}
                     />)}
                 </Table.Body>
             </Table>
