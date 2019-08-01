@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
+import styled from "styled-components";
 
 import SelectedProviderDetails from "./SelectedProviderDetails";
 
@@ -31,18 +32,22 @@ export default function ProviderHomepage() {
   };
 
   return (
-    <div className="provider-homepage-wrapper">
+    <HomePageWrapper>
       <h2>Provider Dashboard</h2>
       <h3>{JSON.parse(localStorage.getItem("userMessage"))}</h3>
       <form onSubmit={e => handleSubmit(e)}>
         <select onChange={e => handleChanges(e)}>
           {providerList.map(provider => (
-            <option>{provider.name}</option>
+            <option key={provider.id}>{provider.name}</option>
           ))}
         </select>
         <button>Get Provider Profile</button>
       </form>
       <SelectedProviderDetails providerId={providerId} />
-    </div>
+    </HomePageWrapper>
   );
 }
+
+const HomePageWrapper = styled.div`
+  margin-top: 10vh;
+`;
