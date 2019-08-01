@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import Axios from "axios";
 import styled from "styled-components";
 
-import NavBar from "./NavBar";
-
 function LogInUser(props) {
-  console.log(props);
+
+ // console.log(props);
+
 
   const [user, setUser] = useState({});
 
@@ -37,7 +37,6 @@ function LogInUser(props) {
 
   const toSignUp = event => {
     event.preventDefault();
-    console.log(props);
     props.history.push("/createuser");
   };
 
