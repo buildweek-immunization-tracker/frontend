@@ -52,7 +52,6 @@ const ParentHomepage = props => {
 
   return (
     <div>
-      <ShotsTableP id="1"/>
       
       <h1>
         {parentObj.firstName} {parentObj.lastName}

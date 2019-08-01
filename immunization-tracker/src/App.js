@@ -9,7 +9,8 @@ import ProviderHomepage from "./components/ProviderHomepage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ObjectCreate from "./components/ObjectCreate";
 import NavBar from "./components/NavBar";
-import ShotsTableP from "./components/ProviderRecordPage/ShotsTableP"
+// import ShotsTableP from "./components/ProviderRecordPage/ShotsTableP"
+// <Route path="/chartTest" render={() => <ShotsTableP id="1" />} />
 
 // styles
 import "./styles/App.scss";
@@ -19,7 +20,6 @@ export default function App() {
   return (
     <>
       <Route path="/" component={NavBar} />
-      <Route path="/chartTest" render={()=><ShotsTableP id="1"/>}/>
       <Route path="/createuser" component={CreateUserForm} />
       <ProtectedRoute path="/parent/" component={ParentHomepage} />
       <ProtectedRoute path="/provider/" component={ProviderHomepage} />
