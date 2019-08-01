@@ -3,17 +3,19 @@ import Axios from "axios";
 import { Button, Form } from "semantic-ui-react";
 
 function ChildInfoForm(props) {
-    console.log(props);
-    // const parentId = props.match.params.parentId;
-    const parentId = 6;
+    //console.log(props);
+    const parentId = props.match.params.parentId;
 
     const [formData, setFormData] = useState({
         "firstName":"", 
         "lastName":"", 
-        "DOB":null, 
-        "provider":null, 
+        "DOB": null, 
+        "providerId": null, 
         "comments":"",
-        "parentId": parentId})
+        "parentId": parentId,
+        "isPermission": 0,
+        "comments": null,
+        "gender": "male"})
     const [providers, setProviders] = useState([]);
     
     let id = null;
@@ -45,8 +47,14 @@ function ChildInfoForm(props) {
         setFormData(inputChild);
     };
 
+    const handleProviderChange = event => {
+        const provider = parseInt(event.target.value);
+        setFormData({...formData, [event.target.name]: provider});
+    }
+
 
     //if this is a new child object, submit handler will post that object to the API
+    console.log('FORMDATA', formData)
     const handleSubmit = event => {
         event.preventDefault();
         if (isUpdate){
@@ -91,6 +99,8 @@ function ChildInfoForm(props) {
         );
     };
 
+    console.log("PROVIDERS", providers);
+
     return (
         <div className="child-form-container">
             <Form onSubmit={handleSubmit}>
@@ -115,7 +125,7 @@ function ChildInfoForm(props) {
                 <Form.Field>
                     <label>
                         Medical Provider
-                        <select name="provider" value={formData.provider} onChange={handleChange} required>
+                        <select name="providerId" value={formData.providerId} onChange={handleProviderChange} required>
                             {providers.map(provider => {
                                 return <option value={provider.id}> 
                                 {provider.name} </option>

@@ -33,9 +33,9 @@ export default function App() {
         render={props => <ParentEdit {...props} />}
       />
       <Route 
-        path="/update-child-info/:id" component={ChildInfoForm}/>
+        path="/update-child-info/:id" render={props => <ChildInfoForm {...props}/>}/>
       <Route 
-        path="/create-child/:parentId" component={ChildInfoForm}/>
+        path="/create-child/:parentId" render={props => <ChildInfoForm {...props}/>}/>
       <Route
         exact
         path="/"
@@ -50,7 +50,7 @@ export default function App() {
         }}
       />
 
-      <Route path="*" render={() => <Redirect to="/" />} />
+      {/* <Route path="*" render={() => <Redirect to="/" />} /> */}
     </>
   );
 }
