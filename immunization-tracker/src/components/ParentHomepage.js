@@ -50,8 +50,11 @@ const ParentHomepage = props => {
   console.log("parentObj", parentObj);
 
   return (
+email}</p>
+
     <Wrapper>
       <DashboardHeader>Parent Dashboard</DashboardHeader>
+
       <div>
         {/* <ShotsTableP id="1"/> */}
         <h1>
