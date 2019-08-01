@@ -22,10 +22,10 @@ export default function App() {
       <Route path="/" component={NavBar} />
       <Route path="/chartTest" render={()=><ShotsTableP id="1"/>}/>
       <Route path="/createuser" component={CreateUserForm} />
-      <ProtectedRoute path="/parent/" component={ParentHomepage} />
-      <ProtectedRoute path="/provider/" component={ProviderHomepage} />
+      <ProtectedRoute path="/parent" component={ParentHomepage} />
+      <ProtectedRoute path="/provider" component={ProviderHomepage} />
       <Route
-        path="/parentsignin/"
+        path="/parentsignin"
         render={props => <ObjectCreate {...props} />}
       />
       <Route
@@ -34,6 +34,8 @@ export default function App() {
       />
       <Route 
         path="/update-child-info/:id" component={ChildInfoForm}/>
+      <Route 
+        path="/create-child/:parentId" component={ChildInfoForm}/>
       <Route
         exact
         path="/"
@@ -41,7 +43,7 @@ export default function App() {
           if (!localStorage.getItem("loggedIn")) {
             return <Route path="/" component={LoginUser} />;
           } else if (JSON.parse(localStorage.getItem("role")) === "parent") {
-            return <Redirect to="/parentsignin/" />;
+            return <Redirect to="/parentsignin" />;
           } else if (JSON.parse(localStorage.getItem("role")) === "staff") {
             return <Redirect to="/provider" />;
           }

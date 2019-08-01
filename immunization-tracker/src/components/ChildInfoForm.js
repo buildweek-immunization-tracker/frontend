@@ -4,13 +4,16 @@ import { Button, Form } from "semantic-ui-react";
 
 function ChildInfoForm(props) {
     console.log(props);
+    // const parentId = props.match.params.parentId;
+    const parentId = 6;
 
     const [formData, setFormData] = useState({
         "firstName":"", 
         "lastName":"", 
         "DOB":null, 
         "provider":null, 
-        "comments":""});
+        "comments":"",
+        "parentId": parentId})
     const [providers, setProviders] = useState([]);
     
     let id = null;
@@ -113,7 +116,7 @@ function ChildInfoForm(props) {
                     <label>
                         Medical Provider
                         <select name="provider" value={formData.provider} onChange={handleChange} required>
-                            {...providers.map(provider => {
+                            {providers.map(provider => {
                                 return <option value={provider.id}> 
                                 {provider.name} </option>
                             }) }
