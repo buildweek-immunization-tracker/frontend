@@ -3,7 +3,9 @@ import Axios from "axios";
 import styled from "styled-components";
 
 function LogInUser(props) {
-  // console.log(props);
+
+ // console.log(props);
+
 
   const [user, setUser] = useState({});
 
@@ -25,7 +27,6 @@ function LogInUser(props) {
         localStorage.setItem("token", JSON.stringify(res.data.token));
         localStorage.setItem("role", JSON.stringify(res.data.role));
         localStorage.setItem("user ID", JSON.stringify(res.data.userId));
-        localStorage.setItem("userMessage", JSON.stringify(res.data.message));
         localStorage.setItem("loggedIn", true);
         props.history.push("/");
       })
