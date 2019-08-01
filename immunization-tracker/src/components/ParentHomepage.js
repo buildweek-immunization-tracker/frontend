@@ -3,8 +3,6 @@ import InfoCard from "./InfoCard";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-
-
 const ParentHomepage = props => {
   const [parent, setParent] = useState([]);
   const [children, setChildren] = useState([]);
@@ -22,7 +20,6 @@ const ParentHomepage = props => {
         setParent(data);
       });
   }, [id]);
-
 
   useEffect(() => {
     axios
@@ -53,7 +50,6 @@ const ParentHomepage = props => {
   return (
     <div>
       {/* <ShotsTableP id="1"/> */}
-      
       <h1>
         {parentObj.firstName} {parentObj.lastName}
       </h1>
