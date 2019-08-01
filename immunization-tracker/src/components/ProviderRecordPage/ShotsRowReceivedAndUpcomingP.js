@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Icon, Label, Menu, Table } from 'semantic-ui-react';
 import Form from "./Form";
 
-export default function ShotsRowP({name, dose, location,dateReceived }){
+export default function ShotsRowP({name, dose, location, dateReceived }){
     if(dateReceived !=null){
         return(
             <Table.Row>
