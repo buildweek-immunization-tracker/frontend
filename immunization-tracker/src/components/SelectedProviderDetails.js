@@ -2,14 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Link, Route, Redirect } from "react-router-dom";
 import axios from "axios";
 
+import DisplayPatients from "./DisplayPatients";
+
 export default function ProviderChangeForm(props) {
   const [providerDetails, setProviderDetails] = useState([{}]);
-  const providerId = localStorage.getItem("Provider ID");
 
   useEffect(() => {
     axios
       .get(
-        `https://immunization-tracker-van.herokuapp.com/api/providers/${providerId}`
+        `https://immunization-tracker-van.herokuapp.com/api/providers/${
+          props.providerId
+        }`
       )
       .then(res => {
         setProviderDetails(res.data);
@@ -17,13 +20,13 @@ export default function ProviderChangeForm(props) {
       .catch(err => {
         console.log(err);
       });
-  }, [providerId]);
+  }, [props.providerId]);
 
   return (
     <section className="provider-details-wrapper">
       <div>
-        {providerId == undefined ? (
-          <p>Please select associated provider above.</p>
+        {!providerDetails.length > 0 ? (
+          <p>Please select your associated provider above.</p>
         ) : (
           <>
             <h3>{providerDetails[0].name}</h3>
@@ -35,13 +38,14 @@ export default function ProviderChangeForm(props) {
               {providerDetails[0].zip}
             </p>
             <p>{providerDetails[0].phone}</p>
+            <Route exact path="/editprovider" component="EditProvider" />
+            <Link to="">Edit This Provider</Link>
+            <br />
+            <Link to="">Add New Provider</Link>
+            <DisplayPatients providerId={providerDetails[0].id} />
           </>
         )}
       </div>
-      <Route exact path="/editprovider" component="EditProvider" />
-      <Link to="">Edit This Provider</Link>
-      <br />
-      <Link to="">Add New Provider</Link>
     </section>
   );
 }
