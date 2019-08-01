@@ -15,6 +15,8 @@ function NavBar(props) {
     if (localStorage.getItem("loggedIn") != null) {
       return (
         <Nav>
+          <NavLink to="/">My Dashboard</NavLink>
+          <a href="https://74ultra.github.io/">Immunization Tracker</a>
           <Link to="" onClick={e => logout(e)} className="logout">
             Logout
           </Link>
@@ -23,6 +25,7 @@ function NavBar(props) {
     } else {
       return (
         <Nav>
+          <a href="https://74ultra.github.io/">Immunization Tracker</a>
           <NavLink to="/">Login</NavLink>
           <NavLink to="/createuser">Create Account</NavLink>
         </Nav>
@@ -37,6 +40,7 @@ export default NavBar;
 
 const Nav = styled.nav`
   position: fixed;
+  opacity: 1;
   top: 0;
   left: 0;
   width: 100vw;
