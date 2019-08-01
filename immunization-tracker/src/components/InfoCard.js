@@ -62,7 +62,7 @@ const UserCard = ({ person }) => {
               <p>{person.currentProvider}</p>
               <div>
                 <Button>View</Button>
-              <Link to={`/update-child-info/${id}`}>
+              <Link to={`/update-child-info/${person.userId}`}>
                 <Button>Update</Button>
               </Link>
               </div>

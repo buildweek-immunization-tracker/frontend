@@ -50,6 +50,9 @@ const ParentHomepage = props => {
 
   return (
     <div>
+
+      {/* <ShotsTableP id="1"/> */}
+r
       <h1>
         {parentObj.firstName} {parentObj.lastName}
       </h1>
