@@ -9,7 +9,8 @@ import ProviderHomepage from "./components/ProviderHomepage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ObjectCreate from "./components/ObjectCreate";
 import NavBar from "./components/NavBar";
-import ShotsTableP from "./components/ProviderRecordPage/ShotsTableP"
+import ShotsTableP from "./components/ProviderRecordPage/ShotsTableP";
+import ChildInfoForm from "./components/ChildInfoForm";
 
 // styles
 import "./styles/App.scss";
@@ -31,6 +32,8 @@ export default function App() {
         path="/user/edit/:id"
         render={props => <ParentEdit {...props} />}
       />
+      <Route 
+        path="/update-child-info/:id" component={ChildInfoForm}/>
       <Route
         exact
         path="/"

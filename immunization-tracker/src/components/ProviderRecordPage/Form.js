@@ -1,30 +1,20 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from "axios";
+import ShotsTableP from"./ShotsTableP";
 
 export default function Form({ChildID, id, clinicName}){
 
     const [inputValue, setInputValue] = useState("");
-    const [newDate, setNewDate] = useState("");
-    const [values, setValue] = useState({
-        "location": "a Clinic",
-        "childId": 3,
-        "immunizationId": 4,
-        "dateReceived": "2019-01-21"
+    
+    const [newDate, setNewDate] = useState({
+        "location": "Hospital",
+        "childId": 1,
+        "immunizationId": 3,
+        "dateReceived": ""
     })
 
-
-    axios
-      .post(
-        "https://immunization-tracker-van.herokuapp.com/api/immunizations/insert",
-        values
-      )
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-
+    // useEffect(()=>{
+    // }, [newDate])
 
     const handleChange = event =>{
         setInputValue(event.target.value);
@@ -33,9 +23,20 @@ export default function Form({ChildID, id, clinicName}){
 
     const handleSubmit = (event) =>{
         event.preventDefault();
-        setNewDate(inputValue);
+        setNewDate({...newDate,"dateReceived":inputValue});
         // console.log(inputValue);
-        console.log(newDate);
+        // console.log({newDate});
+        axios
+            .post(
+                "https://immunization-tracker-van.herokuapp.com/api/immunizations/insert",
+                newDate
+            )
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
 
  
@@ -47,6 +48,7 @@ export default function Form({ChildID, id, clinicName}){
             <div className="App">
                 <form onSubmit={(event)=>handleSubmit(event)}>
                     <label>
+                        
                     <input type="date" 
                         id="start" 
                         name="cal"
