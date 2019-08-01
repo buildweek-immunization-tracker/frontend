@@ -103,26 +103,26 @@ function ChildInfoForm(props) {
 
     return (
         <div className="child-form-container">
-            <Form onSubmit={handleSubmit}>
-                <Form.Field>
+            <Form className="child-form" onSubmit={handleSubmit}>
+                <Form.Field className="field">
                     <label>
                         First Name
                         <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
                     </label>
                 </Form.Field>
-                <Form.Field>
+                <Form.Field className="field">
                     <label>
                         Last Name
                         <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
                     </label>
                 </Form.Field>
-                <Form.Field>
+                <Form.Field className="field">
                     <label>
                         Date of Birth
                         <input type="date" name="DOB" value={formData.DOB} onChange={handleChange} required />
                     </label>
                 </Form.Field>
-                <Form.Field>
+                <Form.Field className="field">
                     <label>
                         Medical Provider
                         <select name="providerId" value={formData.providerId} onChange={handleProviderChange} required>
@@ -133,7 +133,7 @@ function ChildInfoForm(props) {
                         </select>
                     </label>
                 </Form.Field>
-                <Form.Field>
+                <Form.Field className="field">
                     <label>
                         Medical Notes (Optional)
                         <input type="text" name="comments" value={formData.comments} onChange={handleChange} />
