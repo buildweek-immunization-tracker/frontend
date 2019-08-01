@@ -9,23 +9,12 @@ export default function Form({ChildID, id, clinicName}){
     const [newDate, setNewDate] = useState({
         "location": "Hospital",
         "childId": 1,
-        "immunizationId": 4,
+        "immunizationId": 3,
         "dateReceived": ""
     })
 
-    useEffect(()=>{
-        axios
-      .post(
-        "https://immunization-tracker-van.herokuapp.com/api/immunizations/insert",
-        newDate
-      )
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    }, [newDate])
+    // useEffect(()=>{
+    // }, [newDate])
 
     const handleChange = event =>{
         setInputValue(event.target.value);
@@ -37,6 +26,17 @@ export default function Form({ChildID, id, clinicName}){
         setNewDate({...newDate,"dateReceived":inputValue});
         // console.log(inputValue);
         // console.log({newDate});
+        axios
+            .post(
+                "https://immunization-tracker-van.herokuapp.com/api/immunizations/insert",
+                newDate
+            )
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
 
  
