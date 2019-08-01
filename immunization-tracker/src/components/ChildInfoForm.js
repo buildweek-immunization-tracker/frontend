@@ -65,107 +65,59 @@ function ChildInfoForm(props) {
           console.log(res.data);
           props.history.push("/parent");
         })
-        .catch(error => console.log(error));
-    } else {
-      Axios.post(
-        "https://immunization-tracker-van.herokuapp.com/api/children",
-        formData
-      )
-        .then(res => {
-          console.log(res.data);
-          props.history.push("/parent");
-        })
-        .catch(error => console.log(error));
-    }
-  };
+        .catch(error => 
+            console.log(error)
+        );
+    };
 
-  // if (existingChild === null) {
-  //     return <div>Loading...</div>
-  // }
+    console.log("PROVIDERS", providers);
 
-  const toDeleteChild = event => {
-    event.preventDefault();
-    Axios.delete(
-      `https://immunization-tracker-van.herokuapp.com/api/children/${id}`
-    )
-      .then(res => {
-        props.history.push("/parent");
-      })
-      .catch(error => console.log(error));
-  };
+    return (
+        <div className="child-form-container">
+            <Form className="child-form" onSubmit={handleSubmit}>
+                <Form.Field className="field">
+                    <label>
+                        First Name
+                        <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
+                    </label>
+                </Form.Field>
+                <Form.Field className="field">
+                    <label>
+                        Last Name
+                        <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
+                    </label>
+                </Form.Field>
+                <Form.Field className="field">
+                    <label>
+                        Date of Birth
+                        <input type="date" name="DOB" value={formData.DOB} onChange={handleChange} required />
+                    </label>
+                </Form.Field>
+                <Form.Field className="field">
+                    <label>
+                        Medical Provider
+                        <select name="providerId" value={formData.providerId} onChange={handleProviderChange} required>
+                            {providers.map(provider => {
+                                return <option value={provider.id}> 
+                                {provider.name} </option>
+                            }) }
+                        </select>
+                    </label>
+                </Form.Field>
+                <Form.Field className="field">
+                    <label>
+                        Medical Notes (Optional)
+                        <input type="text" name="comments" value={formData.comments} onChange={handleChange} />
+                    </label>
+                </Form.Field>
+                <Button type="submit" >Set Child Profile</Button>
+            </Form>
+            <Button onClick={toDeleteChild} >Delete Child Profile</Button>
+        </div>
 
-  console.log("PROVIDERS", providers);
+    );
 
-  return (
-    <div className="child-form-container">
-      <Form onSubmit={handleSubmit}>
-        <Form.Field>
-          <label>
-            First Name
-            <input
-              type="text"
-              name="firstName"
-              value={formData.firstName}
-              onChange={handleChange}
-              required
-            />
-          </label>
-        </Form.Field>
-        <Form.Field>
-          <label>
-            Last Name
-            <input
-              type="text"
-              name="lastName"
-              value={formData.lastName}
-              onChange={handleChange}
-              required
-            />
-          </label>
-        </Form.Field>
-        <Form.Field>
-          <label>
-            Date of Birth
-            <input
-              type="date"
-              name="DOB"
-              value={formData.DOB}
-              onChange={handleChange}
-              required
-            />
-          </label>
-        </Form.Field>
-        <Form.Field>
-          <label>
-            Medical Provider
-            <select
-              name="providerId"
-              value={formData.providerId}
-              onChange={handleProviderChange}
-              required
-            >
-              {providers.map(provider => {
-                return <option value={provider.id}>{provider.name} </option>;
-              })}
-            </select>
-          </label>
-        </Form.Field>
-        <Form.Field>
-          <label>
-            Medical Notes (Optional)
-            <input
-              type="text"
-              name="comments"
-              value={formData.comments}
-              onChange={handleChange}
-            />
-          </label>
-        </Form.Field>
-        <Button type="submit">Set Child Profile</Button>
-      </Form>
-      <Button onClick={toDeleteChild}>Delete Child Profile</Button>
-    </div>
-  );
+
 }
 
 export default ChildInfoForm;
