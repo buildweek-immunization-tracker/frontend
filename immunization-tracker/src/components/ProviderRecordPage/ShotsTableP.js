@@ -15,7 +15,6 @@ export default function ShotsTableP({id}){
     useEffect(()=>{
         Axios.get(`https://immunization-tracker-van.herokuapp.com/api/immunizations/taken/${id}`)
             .then(data =>{
-                console.log(data.data);
                 setShotsRAUArr(data.data)
             })
             .catch(error=>console.log(error))

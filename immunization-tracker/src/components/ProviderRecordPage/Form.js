@@ -18,14 +18,18 @@ export default function Form({ChildID, id, clinicName}){
 
     const handleChange = event =>{
         setInputValue(event.target.value);
-        // console.log(event.target.value);
+        console.log("This is set input val", event.target.value);
+        console.log("This is input val after", inputValue);
     }
 
     const handleSubmit = (event) =>{
         event.preventDefault();
+        // console.log("This is input value", inputValue);
+        // console.log("This is new date before", newDate);
         setNewDate({...newDate,"dateReceived":inputValue});
-        // console.log(inputValue);
-        // console.log({newDate});
+        // console.log("This is input value after setting", inputValue);
+        // // console.log(inputValue);
+        console.log("This is new after", newDate);
         axios
             .post(
                 "https://immunization-tracker-van.herokuapp.com/api/immunizations/insert",
@@ -37,6 +41,8 @@ export default function Form({ChildID, id, clinicName}){
             .catch(err => {
                 console.log(err);
             });
+
+            // window.location.reload();
     }
 
  
@@ -47,16 +53,14 @@ export default function Form({ChildID, id, clinicName}){
         <div>
             <div className="App">
                 <form onSubmit={(event)=>handleSubmit(event)}>
-                    <label>
-                        
                     <input type="date" 
                         id="start" 
                         name="cal"
-                        value={inputValue}
                         min="1930-01-01" max="2050-12-31"
                         onChange={event => handleChange(event)}
+                        value={inputValue}
                         />
-                    </label>  <button>submit</button>
+                     <button>submit</button>
                 </form>
             </div>
         </div>
