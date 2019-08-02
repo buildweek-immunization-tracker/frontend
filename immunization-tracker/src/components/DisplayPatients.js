@@ -38,7 +38,7 @@ export default function DisplayPatients(props) {
                 </Card.Meta>
                 <Card.Description>
                   DOB: {child.DOB} <br/>
-                  Gender: {child.gender} <br/>
+                  Sex: {child.gender} <br/>
                   <Button>Submit</Button>
                 </Card.Description>
               </Card.Content>
