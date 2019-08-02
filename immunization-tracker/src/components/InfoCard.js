@@ -61,7 +61,10 @@ const UserCard = ({ person }) => {
               </Name>
               <p>{person.currentProvider}</p>
               <div>
+              <Link to={`/view-child-records/${person.userId}`}>
                 <Button>View</Button>
+              </Link>
+                
               <Link to={`/update-child-info/${person.userId}`}>
                 <Button>Update</Button>
               </Link>
