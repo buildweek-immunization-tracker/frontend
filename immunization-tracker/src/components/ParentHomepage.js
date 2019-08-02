@@ -51,7 +51,7 @@ const ParentHomepage = props => {
 
   return (
     <Wrapper>
-      <DashboardHeader>Parent Dashboard TESTING NETLIFY</DashboardHeader>
+      <DashboardHeader>Parent Dashboard</DashboardHeader>
       
       <div>
         {/* <ShotsTableP id="1"/> */}
