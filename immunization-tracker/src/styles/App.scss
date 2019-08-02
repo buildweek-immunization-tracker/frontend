@@ -1,14 +1,23 @@
 .App {
   text-align: center;
+  font-family: 'Barlow', sans-serif !important;
+  color: #484848;
 }
 
-.child-form-container {
+
+.form-container {
   margin: 80px;
+  border: solid 4px #0C0683;
+  border-radius: 10px;
 
 }
 
-.child-form {
-  padding: 20px 0px 20px 0px;
+.form {
+  padding: 40px 40px 40px 40px;
+}
+
+.child-form-button {
+  padding: 0 40px 40px 40px;
 }
 
 .field {

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Button, Form } from "semantic-ui-react";
 
 const ParentEdit = props => {
   const initialState = {
@@ -147,11 +148,11 @@ const ParentEdit = props => {
 
   console.log("newData in person edit", newData);
   return (
-    <div>
+    <div className="form-container">
       <div>{statusMessage ? <p>{statusMessage}</p> : <p>&nbsp;</p>}</div>
-      <h1>Editing {person.firstName}'s Profile</h1>
-      <form onSubmit={sendUpdateRequest}>
-        <div>
+      <Form className="form" onSubmit={sendUpdateRequest}>
+      <h1>Your Information</h1>
+        <Form.Field className="field">
           <label>
             {" "}
             First Name:
@@ -162,8 +163,8 @@ const ParentEdit = props => {
               onChange={onDataChange}
             />
           </label>
-        </div>
-        <div>
+        </Form.Field>
+        <Form.Field className="field">
           <label>
             {" "}
             Last Name:
@@ -174,8 +175,8 @@ const ParentEdit = props => {
               onChange={onDataChange}
             />
           </label>
-        </div>
-        <div>
+        </Form.Field>
+        <Form.Field className="field">
           <label>
             {" "}
             Address:
@@ -186,8 +187,8 @@ const ParentEdit = props => {
               onChange={onDataChange}
             />
           </label>
-        </div>
-        <div>
+        </Form.Field>
+        <Form.Field className="field">
           <label>
             {" "}
             Address 2:
@@ -198,8 +199,8 @@ const ParentEdit = props => {
               onChange={onDataChange}
             />
           </label>
-        </div>
-        <div>
+        </Form.Field>
+        <Form.Field className="field">
           <label>
             {" "}
             City:
@@ -210,8 +211,8 @@ const ParentEdit = props => {
               onChange={onDataChange}
             />
           </label>
-        </div>
-        <div>
+        </Form.Field>
+        <Form.Field className="field">
           <label>
             {" "}
             State:
@@ -229,8 +230,8 @@ const ParentEdit = props => {
               })}
             </select>
           </label>
-        </div>
-        <div>
+        </Form.Field>
+        <Form.Field className="field">
           <label>
             {" "}
             Zip Code:
@@ -241,8 +242,8 @@ const ParentEdit = props => {
               onChange={onDataChange}
             />
           </label>
-        </div>
-        <div>
+        </Form.Field>
+        <Form.Field className="field">
           <label>
             {" "}
             Phone:
@@ -253,8 +254,8 @@ const ParentEdit = props => {
               onChange={onDataChange}
             />
           </label>
-        </div>
-        <div>
+        </Form.Field>
+        <Form.Field className="field">
           <label>
             {" "}
             Email:
@@ -265,11 +266,10 @@ const ParentEdit = props => {
               onChange={onDataChange}
             />
           </label>
-        </div>
-        <div>
-          <button>Update Profile</button>
-        </div>
-      </form>
+        </Form.Field>
+        <Form.Field className="field"></Form.Field>
+        <Button>Update Profile</Button>
+      </Form>
     </div>
   );
 };
