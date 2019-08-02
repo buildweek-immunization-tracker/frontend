@@ -100,8 +100,9 @@ function ChildInfoForm(props) {
     console.log("PROVIDERS", providers);
 
     return (
-        <div className="child-form-container">
-            <Form className="child-form" onSubmit={handleSubmit}>
+        <div className="form-container">
+            <Form className="form" onSubmit={handleSubmit}>
+                <h1>Your Child's Information</h1>
                 <Form.Field className="field">
                     <label>
                         First Name
@@ -139,7 +140,10 @@ function ChildInfoForm(props) {
                 </Form.Field>
                 <Button type="submit" >Set Child Profile</Button>
             </Form>
-            <Button onClick={toDeleteChild} >Delete Child Profile</Button>
+            <div className="child-form-button">
+              <Button onClick={toDeleteChild} >Delete Child Profile</Button>
+            </div>
+            
         </div>
 
     );
