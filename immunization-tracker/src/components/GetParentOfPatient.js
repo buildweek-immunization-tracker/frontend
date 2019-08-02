@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import styled from "styled-components";
 
 export default function GetParentOfPatient(props) {
   const [parent, updateParent] = useState({});
-
-  console.log(parent.firstName);
 
   useEffect(() => {
     axios
@@ -26,7 +25,12 @@ export default function GetParentOfPatient(props) {
       <p>
         Parent: {parent.firstName} {parent.lastName}
       </p>
-      <p>Parent Phone: {parent.phone}</p>
+      <P>Parent Phone: {parent.phone}</P>
     </>
   );
 }
+
+const P = styled.p`
+  color: red;
+
+`;
