@@ -21,7 +21,6 @@ export default function App() {
     <>
       <Route path="/" component={NavBar} />
       <Route path="/patient/edit/:id" component={ShotsTableP} />
-      // <Route path="/chartTest" render={() => <ShotsTableP id="1" />} />
       <Route path="/createuser" component={CreateUserForm} />
       <ProtectedRoute path="/parent" component={ParentHomepage} />
       <ProtectedRoute path="/provider" component={ProviderHomepage} />
