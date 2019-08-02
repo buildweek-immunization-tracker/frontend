@@ -39,9 +39,7 @@ export default function ProviderChangeForm(props) {
             </p>
             <p>{providerDetails[0].phone}</p>
             <Route exact path="/editprovider" component="EditProvider" />
-            <Link to="">Edit This Provider</Link>
-            <br />
-            <Link to="">Add New Provider</Link>
+
             <DisplayPatients providerId={providerDetails[0].id} />
           </>
         )}

@@ -1,9 +1,33 @@
 import React, { useState, useEffect } from "react";
+
 import axios from "axios";
 
-export default function(props) {
-  const [provider, setProvider] = useState(props.provider);
+export default function DisplayPatients(props) {
+  const [providerInfo, setProviderInfo] = useState([]);
+  console.log(props.providerId);
 
-  //   console.log("PROVIDER ON STATE: ", provider);
-  return <h1>RENDERING</h1>;
+  useEffect(() => {
+    axios
+      .get(
+        `https://immunization-tracker-van.herokuapp.com/api/providers/${
+          props.providerId
+        }`
+      )
+      .then(res => {
+        console.log("results: ", res.data);
+        setProviderInfo(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [props.providerId]);
+
+  const provider = providerInfo.map(item => item);
+  console.log("Provider:", providerInfo);
+
+  return (
+    <div>
+      <h3>Edit Provider</h3>
+    </div>
+  );
 }

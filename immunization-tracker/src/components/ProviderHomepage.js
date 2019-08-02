@@ -6,7 +6,9 @@ import SelectedProviderDetails from "./SelectedProviderDetails";
 
 export default function ProviderHomepage() {
   const [providerList, setProviderList] = useState([]);
-  const [providerId, setProviderId] = useState(0);
+  const [providerId, setProviderId] = useState(
+    localStorage.getItem("Provider ID")
+  );
   const [providerName, setProviderName] = useState("");
 
   useEffect(() => {
@@ -29,6 +31,7 @@ export default function ProviderHomepage() {
     e.preventDefault();
     let prep = providerList.filter(item => item.name === providerName);
     setProviderId(prep[0].id);
+    localStorage.setItem("Provider ID", prep[0].id);
   };
 
   return (
