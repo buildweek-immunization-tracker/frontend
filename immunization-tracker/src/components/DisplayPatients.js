@@ -37,10 +37,8 @@ export default function DisplayPatients(props) {
             <Card>
               <Card.Content>
                 <Card.Header>{child.firstName} {child.lastName}</Card.Header>
-                <Card.Meta>
-                  <GetParentOfPatient parentId={child.parentId} />
-                </Card.Meta>
                 <Card.Description>
+                  <GetParentOfPatient parentId={child.parentId} />
                   DOB: {child.DOB} <br/>
                   Sex: {child.gender} <br/> <br/><br/>
                   <Link to={`/patient/edit/${child.id}`}><Button>Edit History</Button></Link>
