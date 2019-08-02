@@ -56,8 +56,6 @@ export default function ShotsTableP(props) {
             />
           ))}
         </Table.Body>
-        <br/>
-        <br/>
         <ShotsHeaderP type="RECEIVED/UPCOMING" />
         <Table.Body>
           {shotsRAUArr.map(shot => (
@@ -76,3 +74,11 @@ export default function ShotsTableP(props) {
   );
 }
 
+const DashboardHeader = styled.h1`
+  background: #0C0683;
+  color: white;
+  border-radius: 5px;
+  font-size: 1.3rem;
+  padding: 0.8rem;
+  border-bottom: 1px solid black;
+`;

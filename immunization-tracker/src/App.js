@@ -20,7 +20,7 @@ export default function App() {
   return (
     <>
       <Route path="/" component={NavBar} />
-      <Route path="/patient/edit/:id" component={ShotsTableP} />
+      <Route path="/patient/edit/:id" render={props =>(<ShotsTableP {...props}/>)}/>
       <Route path="/createuser" component={CreateUserForm} />
       <ProtectedRoute path="/parent" component={ParentHomepage} />
       <ProtectedRoute path="/provider" component={ProviderHomepage} />
