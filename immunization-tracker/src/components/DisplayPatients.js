@@ -4,6 +4,7 @@ import axios from "axios";
 import styled from "styled-components";
 
 import GetParentOfPatient from "./GetParentOfPatient";
+import { Button, Card} from 'semantic-ui-react'
 
 export default function DisplayPatients(props) {
   const [childList, setChildList] = useState([]);
@@ -26,6 +27,32 @@ export default function DisplayPatients(props) {
   const filteredList = childList.filter(item => item.isPermission != 0);
 
   return (
+<<<<<<< HEAD
+    <div>
+      
+      <h3>Patients</h3>
+      <div className="card">
+        {filteredList.map(child => (
+          <div className="row">
+            <Card>
+              <Card.Content>
+                <Card.Header>{child.firstName} {child.lastName}</Card.Header>
+                <Card.Meta>
+                  <GetParentOfPatient parentId={child.parentId} />
+                </Card.Meta>
+                <Card.Description>
+                  DOB: {child.DOB} <br/>
+                  Sex: {child.gender} <br/>
+                  <Button>Submit</Button>
+                </Card.Description>
+              </Card.Content>
+            </Card>
+            
+          </div>
+        ))}
+      </div>
+    </div>
+=======
     <PatientsWrapper>
       <h3>Patients</h3>
 
@@ -43,6 +70,7 @@ export default function DisplayPatients(props) {
         </div>
       ))}
     </PatientsWrapper>
+>>>>>>> 6135d2d9a40fe5912fddbe1ed374d9dda898e294
   );
 }
 
