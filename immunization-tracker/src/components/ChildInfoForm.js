@@ -3,7 +3,7 @@ import Axios from "axios";
 import { Button, Form } from "semantic-ui-react";
 
 function ChildInfoForm(props) {
-  //console.log(props);
+  console.log(props);
   const parentId = props.match.params.parentId;
 
   const [formData, setFormData] = useState({
@@ -22,24 +22,34 @@ function ChildInfoForm(props) {
   let id = null;
   let isUpdate = false;
   //if a child ID is passed in, this is an update. Otherwise, this is a new child object.
-  if (id in props.match.params) {
+  if (props.match.params.id !== null) {
     id = props.match.params.id;
     isUpdate = true;
   }
+  console.log(id);
 
   useEffect(() => {
     if (isUpdate) {
       Axios.get(
         `https://immunization-tracker-van.herokuapp.com/api/children/${id}`
-      ).then(res => setFormData(...formData, ...res.data));
+      ).then(res => {
+        console.log(res.data);
+        setFormData(...res.data);
+      })
+      .catch(error => 
+          console.log(error)
+      );
     }
-  }, [formData, id, isUpdate]);
+  }, []);
+  
 
   useEffect(() => {
     Axios.get(
       "https://immunization-tracker-van.herokuapp.com/api/providers"
     ).then(res => setProviders(res.data));
   }, []);
+
+ 
 
   //change handler for new child object
   const handleChange = event => {
