@@ -56,7 +56,7 @@ export default function ShotsTableP(props) {
             />
           ))}
         </Table.Body>
-        <ShotsHeaderP type="RECEIVED/UPCOMING" />
+        <ShotsHeaderP type="RECEIVED" />
         <Table.Body>
           {shotsRAUArr.map(shot => (
             <ShotsRowP
