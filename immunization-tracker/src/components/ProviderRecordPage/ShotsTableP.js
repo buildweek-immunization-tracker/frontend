@@ -36,6 +36,8 @@ export default function ShotsTableP(props) {
 
   const NavContainer = styled.div`
     width: 75%;
+    margin: auto;
+    margin-top: 5vh;
   `;
 
   return (
@@ -54,7 +56,7 @@ export default function ShotsTableP(props) {
             />
           ))}
         </Table.Body>
-        <ShotsHeaderP type="RECEIVED/UPCOMING" />
+        <ShotsHeaderP type="RECEIVED" />
         <Table.Body>
           {shotsRAUArr.map(shot => (
             <ShotsRowP
@@ -71,3 +73,12 @@ export default function ShotsTableP(props) {
     </NavContainer>
   );
 }
+
+const DashboardHeader = styled.h1`
+  background: #0C0683;
+  color: white;
+  border-radius: 5px;
+  font-size: 1.3rem;
+  padding: 0.8rem;
+  border-bottom: 1px solid black;
+`;

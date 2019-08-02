@@ -36,21 +36,55 @@ export default function ProviderHomepage() {
 
   return (
     <HomePageWrapper>
-      <h2>Provider Dashboard</h2>
-      <h3>{JSON.parse(localStorage.getItem("userMessage"))}</h3>
-      <form onSubmit={e => handleSubmit(e)}>
-        <select onChange={e => handleChanges(e)}>
-          {providerList.map(provider => (
-            <option key={provider.id}>{provider.name}</option>
-          ))}
-        </select>
-        <button>Get Provider Profile</button>
-      </form>
+      <DashboardHeader>Provider Dashboard</DashboardHeader>
+      <IntroWrapper>
+        <h3>{JSON.parse(localStorage.getItem("userMessage"))}</h3>
+        <form onSubmit={e => handleSubmit(e)}>
+          <select className="dropdown" onChange={e => handleChanges(e)}>
+            {providerList.map(provider => (
+              <option key={provider.id}>{provider.name}</option>
+            ))}
+          </select>
+          <Button>Get Provider Profile</Button>
+        </form>
+      </IntroWrapper>
       <SelectedProviderDetails providerId={providerId} />
     </HomePageWrapper>
   );
 }
 
+
+
+const Button = styled.button`
+  padding: 0.5rem 1rem;
+  min-width: 7rem;
+  background: transparent;
+  border: 1px solid black;
+  outline: none;
+  &:hover {
+    background: #0C0683;
+    color: white;
+  }
+`;
+
+const DashboardHeader = styled.h1`
+  background: #0C0683;
+  color: white;
+  border-radius: 5px;
+  font-size: 2.7rem;
+  padding: 0.8rem;
+  border-bottom: 1px solid black;
+`;
+
 const HomePageWrapper = styled.div`
+  width: 85%;
+  margin: auto;
   margin-top: 10vh;
 `;
+
+const IntroWrapper = styled.div`
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+`;
+ 

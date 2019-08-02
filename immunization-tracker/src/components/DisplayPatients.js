@@ -4,7 +4,7 @@ import axios from "axios";
 import styled from "styled-components";
 
 import GetParentOfPatient from "./GetParentOfPatient";
-import { Button, Card } from "semantic-ui-react";
+import {Card} from 'semantic-ui-react'
 
 export default function DisplayPatients(props) {
   const [childList, setChildList] = useState([]);
@@ -27,39 +27,60 @@ export default function DisplayPatients(props) {
   const filteredList = childList.filter(item => item.isPermission != 0);
 
   return (
-    <PatientsWrapper>
-      <h3>Patients</h3>
 
-      {filteredList.map(child => (
-        <div className="card" key={child.id}>
-          <p>
-            Name: {child.firstName} {child.lastName}
-          </p>
-          <p>DOB: {child.DOB}</p>
-          <p>Gender: {child.gender}</p>
-          <GetParentOfPatient parentId={child.parentId} />
-          <p className="button">
-            <Link to={`/patient/edit/${child.id}`}>Edit History</Link>
-          </p>
-        </div>
-      ))}
+    <PatientsWrapper>
+      <DashboardHeader>Patients</DashboardHeader>
+      <CardWrapper>
+        {filteredList.map(child => (
+          <div>
+            <Card>
+              <Card.Content>
+                <Card.Header>{child.firstName} {child.lastName}</Card.Header>
+                <Card.Description>
+                  <GetParentOfPatient parentId={child.parentId} />
+                  DOB: {child.DOB} <br/>
+                  Sex: {child.gender} <br/> <br/><br/>
+                  <Link to={`/patient/edit/${child.id}`}><Button>Edit History</Button></Link>
+                </Card.Description>
+            </Card.Content>
+            </Card>
+            
+          </div>
+        ))}
+      </CardWrapper>
     </PatientsWrapper>
   );
 }
 
-const PatientsWrapper = styled.div`
-  .card {
-    border: 1px solid black;
-    margin: 2rem 0;
-    padding: 1rem;
-  }
 
-  a {
-    text-decoration: none;
-    color: black;
-    border: 1px solid black;
-    padding: 0.5rem;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+const Button = styled.button`
+  padding: 0.5rem 1rem;
+  min-width: 7rem;
+  background: transparent;
+  border: 1px solid black;
+  outline: none;
+  &:hover {
+    background: #0C0683;
+    color: white;
   }
+`
+
+const DashboardHeader = styled.h2`
+  background: #f4f4f4;
+  font-size: 1.2rem;
+  padding: 0.8rem;
+  border-radius: 5px;
+`;
+const CardWrapper = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+`;
+
+const PatientsWrapper = styled.div`
+  width: 66%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  margin-top: 5%;
 `;
