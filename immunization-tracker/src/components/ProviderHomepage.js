@@ -3,13 +3,15 @@ import Axios from "axios";
 import styled from "styled-components";
 
 import SelectedProviderDetails from "./SelectedProviderDetails";
+import AddProvider from "./AddProvider";
 
-export default function ProviderHomepage() {
+export default function ProviderHomepage(props) {
   const [providerList, setProviderList] = useState([]);
   const [providerId, setProviderId] = useState(
     localStorage.getItem("Provider ID")
   );
   const [providerName, setProviderName] = useState("");
+  const [showAddProvider, toggleShowAddProvider] = useState(false);
 
   useEffect(() => {
     Axios.get("https://immunization-tracker-van.herokuapp.com/api/providers")
@@ -34,6 +36,11 @@ export default function ProviderHomepage() {
     localStorage.setItem("Provider ID", prep[0].id);
   };
 
+  const openAdd = e => {
+    // e.preventDefault();
+    toggleShowAddProvider(!showAddProvider);
+  };
+
   return (
     <HomePageWrapper>
       <DashboardHeader>Provider Dashboard</DashboardHeader>
@@ -45,15 +52,29 @@ export default function ProviderHomepage() {
               <option key={provider.id}>{provider.name}</option>
             ))}
           </select>
-          <Button>Get Provider Profile</Button>
+          <Button style={{ marginLeft: "1rem" }}>Get Provider Profile</Button>
         </form>
+        <br />
+        <a hrer="" style={{ marginLeft: "2rem" }}>
+          <Button
+            onClick={e => {
+              openAdd(e);
+            }}
+          >
+            Add New Provider
+          </Button>
+        </a>
+        <div
+          className="addProvider"
+          style={showAddProvider ? { display: "block" } : { display: "none" }}
+        >
+          <AddProvider history={props.history} />
+        </div>
       </IntroWrapper>
       <SelectedProviderDetails providerId={providerId} />
     </HomePageWrapper>
   );
 }
-
-
 
 const Button = styled.button`
   padding: 0.5rem 1rem;
@@ -62,13 +83,13 @@ const Button = styled.button`
   border: 1px solid black;
   outline: none;
   &:hover {
-    background: #0C0683;
+    background: #0c0683;
     color: white;
   }
 `;
 
 const DashboardHeader = styled.h1`
-  background: #0C0683;
+  background: #0c0683;
   color: white;
   border-radius: 5px;
   font-size: 2.7rem;
@@ -87,4 +108,3 @@ const IntroWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
 `;
- 

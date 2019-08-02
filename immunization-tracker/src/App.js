@@ -21,7 +21,10 @@ export default function App() {
   return (
     <>
       <Route path="/" component={NavBar} />
-      <Route path="/patient/edit/:id" render={props =>(<ShotsTableP {...props}/>)}/>
+      <Route
+        path="/patient/edit/:id"
+        render={props => <ShotsTableP {...props} />}
+      />
       <Route path="/createuser" component={CreateUserForm} />
       <ProtectedRoute path="/parent" component={ParentHomepage} />
       <ProtectedRoute path="/provider" component={ProviderHomepage} />
@@ -31,7 +34,7 @@ export default function App() {
       />
       <Route
         path="/user/edit/:id"
-        render={props => (<ParentEdit {...props} />)}
+        render={props => <ParentEdit {...props} />}
       />
       <Route
         path="/update-child-info/:id"
@@ -43,7 +46,7 @@ export default function App() {
       />
       <Route
         path="/view-child-records/:id"
-        render={props => <ShotsTable {...props} />} 
+        render={props => <ShotsTable {...props} />}
       />
       <Route
         exact

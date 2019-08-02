@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, Route, Redirect } from "react-router-dom";
-import {Dropdown} from "semantic-ui-react"
-import styled from "styled-components"
+import { Dropdown } from "semantic-ui-react";
+import styled from "styled-components";
 import axios from "axios";
 
 import DisplayPatients from "./DisplayPatients";
@@ -24,11 +24,30 @@ export default function ProviderChangeForm(props) {
       });
   }, [props.providerId]);
 
+  function deleteProvider(e) {
+    console.log(providerDetails[0].id);
+    axios
+      .delete(
+        `https://immunization-tracker-van.herokuapp.com/api/providers/${
+          props.providerId
+        }`
+      )
+      .then(res => {
+        console.log(res.data);
+        props.history.push("/");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
   return (
     <section className="provider-details-wrapper">
       <div>
         {!providerDetails.length > 0 ? (
-          <InfoDiv><p>Please select your associated provider above.</p></InfoDiv>
+          <InfoDiv>
+            <p>Please select your associated provider above.</p>
+          </InfoDiv>
         ) : (
           <MiddleDiv>
             <InfoDiv>
@@ -45,10 +64,13 @@ export default function ProviderChangeForm(props) {
               </div>
               <ButtonDiv>
                 <Route exact path="/editprovider" component="EditProvider" />
-                <Link to=""><Button>Edit This Provider</Button></Link>
+
+                <Button onClick={e => deleteProvider(e)}>
+                  Delete This Provider
+                </Button>
+
                 <br />
-                <Link to=""><Button>Add New Provider</Button></Link>
-              </ButtonDiv>  
+              </ButtonDiv>
             </InfoDiv>
             <DisplayPatients providerId={providerDetails[0].id} />
           </MiddleDiv>
@@ -56,7 +78,6 @@ export default function ProviderChangeForm(props) {
       </div>
     </section>
   );
-
 }
 
 const Button = styled.button`
@@ -66,40 +87,37 @@ const Button = styled.button`
   border: 1px solid black;
   outline: none;
   &:hover {
-    background: #0C0683;
+    background: #0c0683;
     color: white;
   }
 `;
 
-
-const MiddleDiv= styled.div`
-    width: %;
-    display: flex;
-    justify-content: space-between;
-    margin: auto;
-  `;
+const MiddleDiv = styled.div`
+  width: %;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+`;
 
 const ButtonDiv = styled.div`
-    width: 95%;
-    display: flex;
-    justify-content: space-between;
-  `;
-
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+`;
 
 const InfoDiv = styled.div`
-    width: 30%;
-    display: flex;
-    flex-flow: column;
-    justify-content: space-between;
-    margin-bottom: 5%;
-    margin-top: 5%;
-    background-color:#f4f4f4;
-    border-radius: 5px;
+  width: 30%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  background-color: #f4f4f4;
+  border-radius: 5px;
 
-    div{
-      margin-left: 2%;
-      margin-top: 2%;
-      margin-bottom:2%;
-    }
-  
-  `;
+  div {
+    margin-left: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
+`;

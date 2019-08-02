@@ -132,7 +132,7 @@ export default withFormik({
     };
     axios
       .post(
-        "https://immunization-tracker-van.herokuapp.com/api/auth/register",
+        "https://immunization-tracker-van.herokuapp.com/api/providers",
         newUser
       )
       .then(res => {
