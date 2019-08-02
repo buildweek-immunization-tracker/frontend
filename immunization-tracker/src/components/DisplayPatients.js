@@ -30,8 +30,7 @@ export default function DisplayPatients(props) {
   return (
 
     <PatientsWrapper>
-      <h3>Patients</h3>
-
+      <DashboardHeader>Patients</DashboardHeader>
       <CardWrapper>
         {filteredList.map(child => (
           <div>
@@ -56,21 +55,24 @@ export default function DisplayPatients(props) {
   );
 }
 
+const DashboardHeader = styled.h2`
+  background: #f4f4f4;
+  font-size: 1.2rem;
+  padding: 0.8rem;
+  border-bottom: 1px solid black;
+`;
 const CardWrapper = styled.div`
-
+  border: 1px solid green;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-  width: 85%;
-  margin: auto;
-
 `;
 
 const PatientsWrapper = styled.div`
-
-  border: 1px solid red;
-  margin: auto;
+  width: 66%;
+  border: 1px solid green;
   display: flex;
   flex-flow: column;
+  justify-content: space-between;
   margin-top: 5%;
 `;

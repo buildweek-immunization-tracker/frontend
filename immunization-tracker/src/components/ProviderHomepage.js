@@ -37,11 +37,11 @@ export default function ProviderHomepage() {
       <IntroWrapper>
         <h3>{JSON.parse(localStorage.getItem("userMessage"))} hi</h3>
         <form onSubmit={e => handleSubmit(e)}>
-          <SelectDiv onChange={e => handleChanges(e)}>
+          <select className="dropdown" onChange={e => handleChanges(e)}>
             {providerList.map(provider => (
               <option key={provider.id}>{provider.name}</option>
             ))}
-          </SelectDiv>
+          </select>
           <Button>Get Provider Profile</Button>
         </form>
       </IntroWrapper>
@@ -86,58 +86,4 @@ const IntroWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
 `;
- const SelectDiv = styled.select`
  
-  select {
-   display: none; /*hide original SELECT element: */
- }
- 
- .select-selected {
-   background-color: DodgerBlue;
- }
- 
- .select-selected:after {
-   position: absolute;
-   content: "";
-   top: 14px;
-   right: 10px;
-   width: 0;
-   height: 0;
-   border: 6px solid transparent;
-   border-color: #fff transparent transparent transparent;
- }
- 
- /* Point the arrow upwards when the select box is open (active): */
- .select-selected.select-arrow-active:after {
-   border-color: transparent transparent #fff transparent;
-   top: 7px;
- }
- 
- /* style the items (options), including the selected item: */
- .select-items div,.select-selected {
-   color: #ffffff;
-   padding: 8px 16px;
-   border: 1px solid transparent;
-   border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-   cursor: pointer;
- }
- 
- /* Style items (options): */
- .select-items {
-   position: absolute;
-   background-color: DodgerBlue;
-   top: 100%;
-   left: 0;
-   right: 0;
-   z-index: 99;
- }
- 
- /* Hide the items when the select box is closed: */
- .select-hide {
-   display: none;
- }
- 
- .select-items div:hover, .same-as-selected {
-   background-color: rgba(0, 0, 0, 0.1);
- }
- `;
