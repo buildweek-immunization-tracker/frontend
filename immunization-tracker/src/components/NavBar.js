@@ -40,6 +40,7 @@ export default NavBar;
 
 const Nav = styled.nav`
   position: fixed;
+  background-color: white;
   color: #0C0683;
   opacity: 1;
   top: 0;

@@ -4,7 +4,7 @@ import axios from "axios";
 import styled from "styled-components";
 
 import GetParentOfPatient from "./GetParentOfPatient";
-import {Card} from 'semantic-ui-react'
+import { Card } from "semantic-ui-react";
 
 export default function DisplayPatients(props) {
   const [childList, setChildList] = useState([]);
@@ -27,7 +27,6 @@ export default function DisplayPatients(props) {
   const filteredList = childList.filter(item => item.isPermission != 0);
 
   return (
-
     <PatientsWrapper>
       <DashboardHeader>Patients</DashboardHeader>
       <CardWrapper>
@@ -35,23 +34,26 @@ export default function DisplayPatients(props) {
           <div>
             <Card>
               <Card.Content>
-                <Card.Header>{child.firstName} {child.lastName}</Card.Header>
+                <Card.Header>
+                  {child.firstName} {child.lastName}
+                </Card.Header>
                 <Card.Description>
                   <GetParentOfPatient parentId={child.parentId} />
-                  DOB: {child.DOB} <br/>
-                  Sex: {child.gender} <br/> <br/><br/>
-                  <Link to={`/patient/edit/${child.id}`}><Button>Edit History</Button></Link>
+                  DOB: {child.DOB} <br />
+                  Sex: {child.gender} <br /> <br />
+                  <br />
+                  <Link to={`/patient/edit/${child.id}`}>
+                    <Button>Edit History</Button>
+                  </Link>
                 </Card.Description>
-            </Card.Content>
+              </Card.Content>
             </Card>
-            
           </div>
         ))}
       </CardWrapper>
     </PatientsWrapper>
   );
 }
-
 
 const Button = styled.button`
   padding: 0.5rem 1rem;
@@ -60,10 +62,10 @@ const Button = styled.button`
   border: 1px solid black;
   outline: none;
   &:hover {
-    background: #0C0683;
+    background: #0c0683;
     color: white;
   }
-`
+`;
 
 const DashboardHeader = styled.h2`
   background: #f4f4f4;
