@@ -30,7 +30,7 @@ export default function App() {
       />
       <Route
         path="/user/edit/:id"
-        render={props => <ParentEdit {...props} />}
+        render={props => (<ParentEdit {...props} />)}
       />
       <Route
         path="/update-child-info/:id"
