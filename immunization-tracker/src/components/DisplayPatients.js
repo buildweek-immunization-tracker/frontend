@@ -4,7 +4,7 @@ import axios from "axios";
 import styled from "styled-components";
 
 import GetParentOfPatient from "./GetParentOfPatient";
-import {Button, Card} from 'semantic-ui-react'
+import {Card} from 'semantic-ui-react'
 
 export default function DisplayPatients(props) {
   console.log("Props: ", props);
@@ -55,14 +55,26 @@ export default function DisplayPatients(props) {
   );
 }
 
+
+const Button = styled.button`
+  padding: 0.5rem 1rem;
+  min-width: 7rem;
+  background: transparent;
+  border: 1px solid black;
+  outline: none;
+  &:hover {
+    background: #0C0683;
+    color: white;
+  }
+`
+
 const DashboardHeader = styled.h2`
   background: #f4f4f4;
   font-size: 1.2rem;
   padding: 0.8rem;
-  border-bottom: 1px solid black;
+  border-radius: 5px;
 `;
 const CardWrapper = styled.div`
-  border: 1px solid green;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
@@ -70,7 +82,6 @@ const CardWrapper = styled.div`
 
 const PatientsWrapper = styled.div`
   width: 66%;
-  border: 1px solid green;
   display: flex;
   flex-flow: column;
   justify-content: space-between;

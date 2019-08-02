@@ -35,7 +35,7 @@ export default function ProviderHomepage() {
     <HomePageWrapper>
       <DashboardHeader>Provider Dashboard</DashboardHeader>
       <IntroWrapper>
-        <h3>{JSON.parse(localStorage.getItem("userMessage"))} hi</h3>
+        <h3>{JSON.parse(localStorage.getItem("userMessage"))}</h3>
         <form onSubmit={e => handleSubmit(e)}>
           <select className="dropdown" onChange={e => handleChanges(e)}>
             {providerList.map(provider => (
@@ -50,13 +50,7 @@ export default function ProviderHomepage() {
   );
 }
 
-const Wrapper = styled.div`
-  width: 80%;
-  padding: 2rem;
-  margin: 5rem auto 0;
-  border: 3px solid #ececec;
-  border-radius: 4px;
-`;
+
 
 const Button = styled.button`
   padding: 0.5rem 1rem;
@@ -64,10 +58,16 @@ const Button = styled.button`
   background: transparent;
   border: 1px solid black;
   outline: none;
+  &:hover {
+    background: #0C0683;
+    color: white;
+  }
 `;
 
 const DashboardHeader = styled.h1`
-  background: #f4f4f4;
+  background: #0C0683;
+  color: white;
+  border-radius: 5px;
   font-size: 2.7rem;
   padding: 0.8rem;
   border-bottom: 1px solid black;
@@ -75,14 +75,12 @@ const DashboardHeader = styled.h1`
 
 const HomePageWrapper = styled.div`
   width: 85%;
-  border: 1px solid red;
   margin: auto;
-  margin-top: 10%
+  margin-top: 10vh;
 `;
 
 const IntroWrapper = styled.div`
   width: 50%;
-  border: 1px solid blue;
   display: flex;
   justify-content: flex-start;
 `;

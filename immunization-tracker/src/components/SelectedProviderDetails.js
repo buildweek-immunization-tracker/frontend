@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, Route, Redirect } from "react-router-dom";
-import {Button, Dropdown} from "semantic-ui-react"
+import {Dropdown} from "semantic-ui-react"
 import styled from "styled-components"
 import axios from "axios";
 
@@ -59,11 +59,23 @@ export default function ProviderChangeForm(props) {
 
 }
 
+const Button = styled.button`
+  padding: 0.5rem 1rem;
+  min-width: 7rem;
+  background: transparent;
+  border: 1px solid black;
+  outline: none;
+  &:hover {
+    background: #0C0683;
+    color: white;
+  }
+`;
+
+
 const MiddleDiv= styled.div`
-    width: 100%;
+    width: %;
     display: flex;
     justify-content: space-between;
-    border: 1px solid black;
     margin: auto;
   `;
 
@@ -78,12 +90,11 @@ const InfoDiv = styled.div`
     width: 30%;
     display: flex;
     flex-flow: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     margin-bottom: 5%;
     margin-top: 5%;
     background-color:#f4f4f4;
     border-radius: 5px;
-    border: 1px solid orange;
 
     div{
       margin-left: 2%;
