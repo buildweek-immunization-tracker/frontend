@@ -10,6 +10,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import ObjectCreate from "./components/ObjectCreate";
 import NavBar from "./components/NavBar";
 import ShotsTableP from "./components/ProviderRecordPage/ShotsTableP";
+import ShotsTable from "./components/PatientRecordPage/ShotsTable";
 import ChildInfoForm from "./components/ChildInfoForm";
 
 // styles
@@ -39,6 +40,10 @@ export default function App() {
       <Route
         path="/create-child/:parentId"
         render={props => <ChildInfoForm {...props} />}
+      />
+      <Route
+        path="/view-child-records/:id"
+        render={props => <ShotsTable {...props} />} 
       />
       <Route
         exact
