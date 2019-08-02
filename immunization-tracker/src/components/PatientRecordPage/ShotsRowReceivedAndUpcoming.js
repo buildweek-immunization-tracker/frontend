@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Icon, Label, Menu, Table } from 'semantic-ui-react';
 
-export default function ShotsRow({name, dose, location,dateReceived }){
+export default function ShotsRow({name, dose, location, dateReceived }){
     if(dateReceived !=null){
         return(
             <Table.Row>
