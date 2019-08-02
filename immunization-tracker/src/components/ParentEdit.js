@@ -151,7 +151,7 @@ const ParentEdit = props => {
     <div className="form-container">
       <div>{statusMessage ? <p>{statusMessage}</p> : <p>&nbsp;</p>}</div>
       <Form className="form" onSubmit={sendUpdateRequest}>
-      <h1>Your Information</h1>
+        <h1>Your Information</h1>
         <Form.Field className="field">
           <label>
             {" "}
@@ -267,7 +267,7 @@ const ParentEdit = props => {
             />
           </label>
         </Form.Field>
-        <Form.Field className="field"></Form.Field>
+        <Form.Field className="field" />
         <Button>Update Profile</Button>
       </Form>
     </div>
