@@ -4,8 +4,6 @@ import axios from "axios";
 export default function GetParentOfPatient(props) {
   const [parent, updateParent] = useState({});
 
-  console.log(parent.firstName);
-
   useEffect(() => {
     axios
       .get(
