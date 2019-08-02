@@ -6,7 +6,6 @@ import styled from "styled-components";
 import GetParentOfPatient from "./GetParentOfPatient";
 
 export default function DisplayPatients(props) {
-  console.log("Props: ", props);
   const [childList, setChildList] = useState([]);
 
   useEffect(() => {
