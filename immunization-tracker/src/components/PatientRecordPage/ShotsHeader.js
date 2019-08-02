@@ -1,5 +1,6 @@
 import React from "react";
-import { Icon, Label, Menu, Table } from 'semantic-ui-react'
+import { Icon, Label, Menu, Table } from 'semantic-ui-react';
+import styled from "styled-components";
 
 export default function ShotsHeader({type}){
     return(
