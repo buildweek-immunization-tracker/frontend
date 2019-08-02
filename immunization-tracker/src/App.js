@@ -20,7 +20,8 @@ export default function App() {
   return (
     <>
       <Route path="/" component={NavBar} />
-      <Route path="/chartTest" render={()=><ShotsTableP id="1"/>}/>
+      <Route path="/patient/edit/:id" component={ShotsTableP} />
+      // <Route path="/chartTest" render={() => <ShotsTableP id="1" />} />
       <Route path="/createuser" component={CreateUserForm} />
       <ProtectedRoute path="/parent" component={ParentHomepage} />
       <ProtectedRoute path="/provider" component={ProviderHomepage} />
@@ -32,10 +33,14 @@ export default function App() {
         path="/user/edit/:id"
         render={props => <ParentEdit {...props} />}
       />
-      <Route 
-        path="/update-child-info/:id" render={props => <ChildInfoForm {...props}/>}/>
-      <Route 
-        path="/create-child/:parentId" render={props => <ChildInfoForm {...props}/>}/>
+      <Route
+        path="/update-child-info/:id"
+        render={props => <ChildInfoForm {...props} />}
+      />
+      <Route
+        path="/create-child/:parentId"
+        render={props => <ChildInfoForm {...props} />}
+      />
       <Route
         exact
         path="/"
@@ -49,7 +54,6 @@ export default function App() {
           }
         }}
       />
-
       {/* <Route path="*" render={() => <Redirect to="/" />} /> */}
     </>
   );
