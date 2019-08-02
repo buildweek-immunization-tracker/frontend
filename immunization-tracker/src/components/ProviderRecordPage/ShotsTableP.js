@@ -36,6 +36,8 @@ export default function ShotsTableP(props) {
 
   const NavContainer = styled.div`
     width: 75%;
+    margin: auto;
+    margin-top: 5vh;
   `;
 
   return (
@@ -54,6 +56,8 @@ export default function ShotsTableP(props) {
             />
           ))}
         </Table.Body>
+        <br/>
+        <br/>
         <ShotsHeaderP type="RECEIVED/UPCOMING" />
         <Table.Body>
           {shotsRAUArr.map(shot => (
@@ -71,3 +75,4 @@ export default function ShotsTableP(props) {
     </NavContainer>
   );
 }
+

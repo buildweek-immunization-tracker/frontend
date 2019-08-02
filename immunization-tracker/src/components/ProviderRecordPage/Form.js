@@ -6,15 +6,15 @@ export default function Form({childID, shotID, clinicName}){
 
     
     const [newDate, setNewDate] = useState({
-        "location": "Hospital",
-        "childId": 1,
+        "location": clinicName,
+        "childId": childID,
         "immunizationId":shotID,
         "dateReceived": ""
     })
 
-    // useEffect(()=>{
-    //     console.log("From use effect", newDate)
-    // }, [newDate])
+    useEffect(()=>{
+        console.log("From use effect", newDate)
+    }, [newDate])
 
     const handleChange = event =>{
         // setInputValue(event.target.value);
@@ -42,7 +42,7 @@ export default function Form({childID, shotID, clinicName}){
                 console.log(err);
             });
 
-            // window.location.reload();
+         window.location.reload();
     }
 
  
