@@ -6,7 +6,6 @@ export default function ShotsRowMissedP({childId,id,name, dose, location, dateRe
         <Table.Row>
             <Table.Cell>{name}</Table.Cell>
             <Table.Cell>{dose}</Table.Cell>
-            <Table.Cell>{location}</Table.Cell>
             <Table.Cell textAlign='center'><Icon color='red' name='close icon' size='large' />{dateReceived}</Table.Cell>
             <Table.Cell><Form childId={childId} clinicName={location} shotID={id}/></Table.Cell>
         </Table.Row>

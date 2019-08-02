@@ -52,6 +52,7 @@ const ParentHomepage = props => {
   return (
     <Wrapper>
       <DashboardHeader>Parent Dashboard</DashboardHeader>
+      
       <div>
         {/* <ShotsTableP id="1"/> */}
         <h1>
@@ -88,9 +89,10 @@ const ParentHomepage = props => {
 };
 
 const Wrapper = styled.div`
-  width: 80%;
+  width: 85%;
   padding: 2rem;
-  margin: 5rem auto 0;
+  margin: auto;
+  margin-top: 10vh;
   border: 3px solid #ececec;
   border-radius: 4px;
 `;
@@ -101,13 +103,19 @@ const Button = styled.button`
   background: transparent;
   border: 1px solid black;
   outline: none;
+  &:hover {
+    background: #0C0683;
+    color: white;
+  }
 `;
 
 const DashboardHeader = styled.h1`
-  background: #f4f4f4;
-  font-size: 2.7rem;
-  padding: 0.8rem;
-  border-bottom: 1px solid black;
+background: #0C0683;
+color: white;
+border-radius: 5px;
+font-size: 2.7rem;
+padding: 0.8rem;
+border-bottom: 1px solid black;
 `;
 
 export default ParentHomepage;

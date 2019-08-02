@@ -8,7 +8,6 @@ export default function ShotsRowP({childId,id, name, dose, location, dateReceive
             <Table.Row>
                 <Table.Cell>{name}</Table.Cell>
                 <Table.Cell>{dose}</Table.Cell>
-                <Table.Cell>{location}</Table.Cell>
                 <Table.Cell textAlign='center'><Icon color='green' name='checkmark' size='large' />{dateReceived}</Table.Cell>
                 <Table.Cell><Form childId={childId} clinicName={location} shotID={id}/></Table.Cell>
             </Table.Row>
@@ -18,7 +17,6 @@ export default function ShotsRowP({childId,id, name, dose, location, dateReceive
         <Table.Row>
             <Table.Cell>{name}</Table.Cell>
             <Table.Cell>{dose}</Table.Cell>
-            <Table.Cell>{location}</Table.Cell>
             <Table.Cell textAlign='center'><Icon color='yellow' name='checkmark' size='large' />{dateReceived}</Table.Cell>
             <Table.Cell><Form childId={childId} clinicName={location} shotID={id}/></Table.Cell>
         </Table.Row>
