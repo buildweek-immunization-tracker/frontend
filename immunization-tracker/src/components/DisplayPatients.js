@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import GetParentOfPatient from "./GetParentOfPatient";
+import { Button, Card} from 'semantic-ui-react'
 
 export default function DisplayPatients(props) {
   const [childList, setChildList] = useState([]);
@@ -24,19 +25,25 @@ export default function DisplayPatients(props) {
 
   return (
     <div>
+      
       <h3>Patients</h3>
       <div className="card">
         {filteredList.map(child => (
           <div className="row">
-            <p>
-              Name: {child.firstName} {child.lastName}
-            </p>
-            <p>DOB: {child.DOB}</p>
-            <p>Gender: {child.gender}</p>
-            <GetParentOfPatient parentId={child.parentId} />
-            <p className="button">
-              <button>Edit History</button>
-            </p>
+            <Card>
+              <Card.Content>
+                <Card.Header>{child.firstName} {child.lastName}</Card.Header>
+                <Card.Meta>
+                  <GetParentOfPatient parentId={child.parentId} />
+                </Card.Meta>
+                <Card.Description>
+                  DOB: {child.DOB} <br/>
+                  Gender: {child.gender} <br/>
+                  <Button>Submit</Button>
+                </Card.Description>
+              </Card.Content>
+            </Card>
+            
           </div>
         ))}
       </div>
