@@ -30,6 +30,7 @@ export default function ProviderChangeForm(props) {
         {!providerDetails.length > 0 ? (
           <InfoDiv><p>Please select your associated provider above.</p></InfoDiv>
         ) : (
+<<<<<<< HEAD
           <MiddleDiv>
             <InfoDiv>
               <div>
@@ -50,6 +51,20 @@ export default function ProviderChangeForm(props) {
                 <Link to=""><Button>Add New Provider</Button></Link>
               </ButtonDiv>  
             </InfoDiv>
+=======
+          <>
+            <h3>{providerDetails[0].name}</h3>
+            <p>
+              {providerDetails[0].address1} {providerDetails[0].address2}
+            </p>
+            <p>
+              {providerDetails[0].city}, {providerDetails[0].state}{" "}
+              {providerDetails[0].zip}
+            </p>
+            <p>{providerDetails[0].phone}</p>
+            <Route exact path="/editprovider" component="EditProvider" />
+
+>>>>>>> 4bb08c15bbc477d7a7df5cfeefe2c1cb42e7716b
             <DisplayPatients providerId={providerDetails[0].id} />
           </MiddleDiv>
         )}

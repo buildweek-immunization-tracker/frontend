@@ -7,7 +7,6 @@ import GetParentOfPatient from "./GetParentOfPatient";
 import {Card} from 'semantic-ui-react'
 
 export default function DisplayPatients(props) {
-  console.log("Props: ", props);
   const [childList, setChildList] = useState([]);
 
   useEffect(() => {
