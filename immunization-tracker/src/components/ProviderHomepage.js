@@ -33,21 +33,34 @@ export default function ProviderHomepage() {
 
   return (
     <HomePageWrapper>
-      <h2>Provider Dashboard</h2>
-      <h3>{JSON.parse(localStorage.getItem("userMessage"))}</h3>
-      <form onSubmit={e => handleSubmit(e)}>
-        <select onChange={e => handleChanges(e)}>
-          {providerList.map(provider => (
-            <option key={provider.id}>{provider.name}</option>
-          ))}
-        </select>
-        <button>Get Provider Profile</button>
-      </form>
+      <IntroWrapper>
+        <h2>Provider Dashboard</h2>
+        <h3>{JSON.parse(localStorage.getItem("userMessage"))}</h3>
+        <form onSubmit={e => handleSubmit(e)}>
+          <select onChange={e => handleChanges(e)}>
+            {providerList.map(provider => (
+              <option key={provider.id}>{provider.name}</option>
+            ))}
+          </select>
+          <button>Get Provider Profile</button>
+        </form>
+      </IntroWrapper>
       <SelectedProviderDetails providerId={providerId} />
     </HomePageWrapper>
   );
 }
 
 const HomePageWrapper = styled.div`
-  margin-top: 10vh;
+  width: 85%;
+  border: 1px solid red;
+  margin: auto;
+  margin-top: 10%
 `;
+
+const IntroWrapper = styled.div`
+  width: 50%;
+  border: 1px solid blue;
+  margin: auto;
+  margin-top: 10%
+`;
+

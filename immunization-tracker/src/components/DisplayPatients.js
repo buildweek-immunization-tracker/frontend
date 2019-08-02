@@ -4,7 +4,7 @@ import axios from "axios";
 import styled from "styled-components";
 
 import GetParentOfPatient from "./GetParentOfPatient";
-import { Button, Card} from 'semantic-ui-react'
+import {Button, Card} from 'semantic-ui-react'
 
 export default function DisplayPatients(props) {
   console.log("Props: ", props);
@@ -28,13 +28,13 @@ export default function DisplayPatients(props) {
   const filteredList = childList.filter(item => item.isPermission != 0);
 
   return (
-<<<<<<< HEAD
-    <div>
-      
+
+    <PatientsWrapper>
       <h3>Patients</h3>
-      <div className="card">
+
+      <CardWrapper>
         {filteredList.map(child => (
-          <div className="row">
+          <div>
             <Card>
               <Card.Content>
                 <Card.Header>{child.firstName} {child.lastName}</Card.Header>
@@ -43,51 +43,34 @@ export default function DisplayPatients(props) {
                 </Card.Meta>
                 <Card.Description>
                   DOB: {child.DOB} <br/>
-                  Sex: {child.gender} <br/>
-                  <Button>Submit</Button>
+                  Sex: {child.gender} <br/> <br/><br/>
+                  <Link to={`/patient/edit/${child.id}`}><Button>Edit History</Button></Link>
                 </Card.Description>
-              </Card.Content>
+            </Card.Content>
             </Card>
             
           </div>
         ))}
-      </div>
-    </div>
-=======
-    <PatientsWrapper>
-      <h3>Patients</h3>
-
-      {filteredList.map(child => (
-        <div className="card" key={child.id}>
-          <p>
-            Name: {child.firstName} {child.lastName}
-          </p>
-          <p>DOB: {child.DOB}</p>
-          <p>Gender: {child.gender}</p>
-          <GetParentOfPatient parentId={child.parentId} />
-          <p className="button">
-            <Link to={`/patient/edit/${child.id}`}>Edit History</Link>
-          </p>
-        </div>
-      ))}
+      </CardWrapper>
     </PatientsWrapper>
->>>>>>> 6135d2d9a40fe5912fddbe1ed374d9dda898e294
   );
 }
 
-const PatientsWrapper = styled.div`
-  .card {
-    border: 1px solid black;
-    margin: 2rem 0;
-    padding: 1rem;
-  }
+const CardWrapper = styled.div`
 
-  a {
-    text-decoration: none;
-    color: black;
-    border: 1px solid black;
-    padding: 0.5rem;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  width: 85%;
+  margin: auto;
+
+`;
+
+const PatientsWrapper = styled.div`
+
+  border: 1px solid red;
+  margin: auto;
+  display: flex;
+  flex-flow: column;
+  margin-top: 5%;
 `;
