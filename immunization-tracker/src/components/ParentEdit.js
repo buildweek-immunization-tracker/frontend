@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import styled from "styled-components";
 
 const ParentEdit = props => {
   const initialState = {
@@ -147,131 +148,156 @@ const ParentEdit = props => {
 
   console.log("newData in person edit", newData);
   return (
-    <div>
-      <div>{statusMessage ? <p>{statusMessage}</p> : <p>&nbsp;</p>}</div>
-      <h1>Editing {person.firstName}'s Profile</h1>
-      <form onSubmit={sendUpdateRequest}>
-        <div>
-          <label>
-            {" "}
-            First Name:
-            <input
-              type="text"
-              name="firstName"
-              value={newData.firstName}
-              onChange={onDataChange}
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            {" "}
-            Last Name:
-            <input
-              type="text"
-              name="lastName"
-              value={newData.lastName}
-              onChange={onDataChange}
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            {" "}
-            Address:
-            <input
-              type="text"
-              name="address1"
-              value={newData.address1}
-              onChange={onDataChange}
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            {" "}
-            Address 2:
-            <input
-              type="text"
-              name="address2"
-              value={newData.address2}
-              onChange={onDataChange}
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            {" "}
-            City:
-            <input
-              type="text"
-              name="city"
-              value={newData.city}
-              onChange={onDataChange}
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            {" "}
-            State:
-            <select name="state" onChange={onDataChange}>
-              {statesArray.map(state => {
-                return (
-                  <option
-                    key={state}
-                    value={state}
-                    selected={state === newData.state ? true : false}
-                  >
-                    {state}
-                  </option>
-                );
-              })}
-            </select>
-          </label>
-        </div>
-        <div>
-          <label>
-            {" "}
-            Zip Code:
-            <input
-              type="text"
-              name="zip"
-              value={newData.zip}
-              onChange={onDataChange}
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            {" "}
-            Phone:
-            <input
-              type="tel"
-              name="phone"
-              value={newData.phone}
-              onChange={onDataChange}
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            {" "}
-            Email:
-            <input
-              type="email"
-              name="email"
-              value={newData.email}
-              onChange={onDataChange}
-            />
-          </label>
-        </div>
-        <div>
-          <button>Update Profile</button>
-        </div>
-      </form>
-    </div>
+    <Wrapper>
+      {statusMessage ? <p>{statusMessage}</p> : null}
+      <EditHeader>Editing {person.firstName}'s Profile</EditHeader>
+      <div>
+        <form onSubmit={sendUpdateRequest}>
+          <div>
+            <label>
+              {" "}
+              First Name:
+              <input
+                type="text"
+                name="firstName"
+                value={newData.firstName}
+                onChange={onDataChange}
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              {" "}
+              Last Name:
+              <input
+                type="text"
+                name="lastName"
+                value={newData.lastName}
+                onChange={onDataChange}
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              {" "}
+              Address:
+              <input
+                type="text"
+                name="address1"
+                value={newData.address1}
+                onChange={onDataChange}
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              {" "}
+              Address 2:
+              <input
+                type="text"
+                name="address2"
+                value={newData.address2}
+                onChange={onDataChange}
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              {" "}
+              City:
+              <input
+                type="text"
+                name="city"
+                value={newData.city}
+                onChange={onDataChange}
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              {" "}
+              State:
+              <select name="state" onChange={onDataChange}>
+                {statesArray.map(state => {
+                  return (
+                    <option
+                      key={state}
+                      value={state}
+                      selected={state === newData.state ? true : false}
+                    >
+                      {state}
+                    </option>
+                  );
+                })}
+              </select>
+            </label>
+          </div>
+          <div>
+            <label>
+              {" "}
+              Zip Code:
+              <input
+                type="text"
+                name="zip"
+                value={newData.zip}
+                onChange={onDataChange}
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              {" "}
+              Phone:
+              <input
+                type="tel"
+                name="phone"
+                value={newData.phone}
+                onChange={onDataChange}
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              {" "}
+              Email:
+              <input
+                type="email"
+                name="email"
+                value={newData.email}
+                onChange={onDataChange}
+              />
+            </label>
+          </div>
+          <div>
+            <Button>Update Profile</Button>
+          </div>
+        </form>
+      </div>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  width: 80%;
+  padding: 2rem;
+  margin: 5rem auto 0;
+  border: 3px solid #ececec;
+  border-radius: 4px;
+`;
+
+const Button = styled.button`
+  padding: 0.5rem 1rem;
+  min-width: 7rem;
+  background: transparent;
+  border: 1px solid black;
+  outline: none;
+`;
+
+const EditHeader = styled.h1`
+  background: #f4f4f4;
+  font-size: 2.7rem;
+  padding: 0.8rem;
+  border-bottom: 1px solid black;
+`;
 
 export default ParentEdit;
