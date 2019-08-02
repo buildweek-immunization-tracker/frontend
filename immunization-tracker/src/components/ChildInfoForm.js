@@ -34,7 +34,7 @@ function ChildInfoForm(props) {
         `https://immunization-tracker-van.herokuapp.com/api/children/${id}`
       ).then(res => {
         console.log(res.data);
-        setFormData(...res.data);
+        setFormData(...formData, ...res.data);
       })
       .catch(error => 
           console.log(error)
